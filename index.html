@@ -144,6 +144,9 @@
       <div class="settings-group glass">
         <label class="setting-row"><span class="setting-icon">♣</span><span><strong>Clawd 小宠物</strong><small class="pet-setting-note">跟随聊天状态 · 可拖动 · <a href="https://github.com/rullerzhou-afk/clawd-on-desk" target="_blank" rel="noopener noreferrer">开源项目</a></small></span><input id="pet-toggle" type="checkbox" class="switch" checked /></label>
       </div>
+      <div class="settings-group glass">
+        <div class="setting-row"><span class="setting-icon">☎</span><span><strong>应用来电通知</strong><small id="web-push-status">正在检查通知状态</small></span><button id="web-push-toggle" type="button" class="reset-button">开启</button></div>
+      </div>
       <div class="settings-group glass real-status-group"><div class="setting-row"><span class="setting-icon">◇</span><span><strong>当前模型</strong><small id="settings-model-status">正在读取</small></span></div><div class="setting-row"><span class="setting-icon">⌁</span><span><strong>对话与记忆</strong><small id="settings-storage-status">正在连接 Supabase</small></span></div><div class="setting-row"><span class="setting-icon">✓</span><span><strong>后端状态</strong><small id="settings-service-status">正在检查</small></span></div></div>
       <p class="version">LUMIÈRE · PERSONAL SPACE</p>
     </section>
@@ -178,6 +181,7 @@
   <script src="app.js"></script>
   <script src="api.js"></script>
   <script src="voice-call.js"></script>
+  <script src="push-notifications.js"></script>
   <script src="real-ui.js"></script>
   <script src="pet.js"></script>
 </body>

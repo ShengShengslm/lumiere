@@ -18,6 +18,7 @@ import { elevenLabsStatus, synthesizeSpeech, transcribeSpeech } from "./elevenla
 import { describeAndRememberTone } from "./call-tone.js";
 import { answerCallInvite, getCallInvite, maybeCreateProactiveCall, saveCallRecord } from "./call-invites.js";
 import { cleanBackedUpVoiceCache } from "./voice-cache.js";
+import { removeWebPushSubscription, saveWebPushSubscription, webPushStatus } from "./web-push.js";
 
 const locks = new Map();
 const breathCache = new Map();
@@ -277,6 +278,13 @@ async function handleApi(req, res, url) {
   }
   if (url.pathname === "/api/health") return json(res, 200, { ok: true, storage: config.supabaseUrl ? "supabase" : "memory", modelConfigured: config.providers.some((item) => item.apiKey && item.models.length), ombre: await ombre.health() });
   if (!authorized(req)) return json(res, 401, { error: "需要访问令牌" });
+  if (url.pathname === "/api/web-push/status" && req.method === "GET") return json(res, 200, webPushStatus());
+  if (url.pathname === "/api/web-push/subscribe" && req.method === "POST") {
+    return json(res, 201, saveWebPushSubscription((await readBody(req)).subscription));
+  }
+  if (url.pathname === "/api/web-push/unsubscribe" && req.method === "POST") {
+    return json(res, 200, removeWebPushSubscription((await readBody(req)).endpoint));
+  }
   if (url.pathname === "/api/call/invite" && req.method === "GET") return json(res, 200, { invite: getCallInvite() });
   if (url.pathname === "/api/call/invite" && req.method === "POST") return json(res, 201, await maybeCreateProactiveCall({ force: true }));
   if (url.pathname === "/api/call/answer" && req.method === "POST") {

@@ -2,6 +2,7 @@
   "name": "Lumière",
   "short_name": "Lumière",
   "description": "A quiet space for companionship and memories.",
+  "id": "/",
   "start_url": "/?source=homescreen",
   "scope": "/",
   "display": "standalone",

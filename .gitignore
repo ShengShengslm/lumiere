@@ -11,3 +11,5 @@ tmp/
 data/*.sqlite
 data/*.sqlite-*
 data/voice-cache/
+data/call-invites.json
+data/push-subscriptions.json

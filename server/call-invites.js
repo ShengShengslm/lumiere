@@ -4,6 +4,7 @@ import { config } from "./config.js";
 import { store } from "./store.js";
 import { chat } from "./model.js";
 import { sendCallBark } from "./shadow-push.js";
+import { sendCallWebPush } from "./web-push.js";
 
 const statePath = join(process.cwd(), "data", "call-invites.json");
 let checking = false;
@@ -97,8 +98,13 @@ export async function maybeCreateProactiveCall({ force = false } = {}) {
     };
     state.lastCallDate = today;
     save();
-    try { await sendCallBark(reason); } catch (error) { console.warn("[call] bark:", error.message); }
-    return { created: true, invite: state.invite };
+    let webPush = { configured: false, delivered: 0, failed: 0 };
+    try { webPush = await sendCallWebPush({ inviteId: state.invite.id, reason }); }
+    catch (error) { console.warn("[call] web push:", error.message); }
+    let bark = { configured: false, delivered: false };
+    if (!webPush.delivered) {
+      try { bark = await sendCallBark(reason); } catch (error) { console.warn("[call] bark:", error.message); }
+    }
+    return { created: true, invite: state.invite, webPush, bark };
   } finally { checking = false; }
 }
-

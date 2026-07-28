@@ -114,6 +114,11 @@ export const config = {
     publicAppUrl: process.env.PUBLIC_APP_URL || "https://43-156-145-27.sslip.io",
     title: process.env.PUSH_TITLE || "顾克",
     iconUrl: process.env.BARK_ICON_URL || `${process.env.PUBLIC_APP_URL || "https://43-156-145-27.sslip.io"}/app-icon-512.png`
+  },
+  webPush: {
+    subject: process.env.WEB_PUSH_SUBJECT || "",
+    publicKey: process.env.WEB_PUSH_PUBLIC_KEY || "",
+    privateKey: process.env.WEB_PUSH_PRIVATE_KEY || ""
   }
 };
 
