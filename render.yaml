@@ -1,0 +1,33 @@
+services:
+  - type: web
+    name: lumiere-platform
+    runtime: node
+    plan: free
+    buildCommand: npm run build
+    startCommand: npm start
+    healthCheckPath: /api/health
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: APP_ACCESS_TOKEN
+        generateValue: true
+      - key: SUPABASE_URL
+        sync: false
+      - key: SUPABASE_SERVICE_ROLE_KEY
+        sync: false
+      - key: CLAUDE_CODE_OAUTH_TOKEN
+        sync: false
+      - key: OPENAI_API_KEY
+        sync: false
+      - key: ANTHROPIC_API_KEY
+        sync: false
+      - key: DEEPSEEK_API_KEY
+        sync: false
+      - key: CUSTOM_API_URL
+        sync: false
+      - key: CUSTOM_API_KEY
+        sync: false
+      - key: CUSTOM_MODELS
+        sync: false
+      - key: MEMORY_PROVIDER
+        value: deepseek

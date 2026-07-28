@@ -1,0 +1,14 @@
+{
+  "name": "Lumière",
+  "short_name": "Lumière",
+  "description": "A quiet space for companionship and memories.",
+  "start_url": "/?source=homescreen",
+  "scope": "/",
+  "display": "standalone",
+  "display_override": ["standalone", "fullscreen"],
+  "orientation": "portrait",
+  "background_color": "#e9f3fb",
+  "theme_color": "#e9f3fb",
+  "lang": "zh-CN",
+  "icons": [{ "src": "/app-icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any maskable" }]
+}

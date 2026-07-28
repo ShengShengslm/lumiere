@@ -1,0 +1,11 @@
+.bottom-nav {
+  grid-template-columns: repeat(5, 1fr);
+}
+
+.page[data-page="moments"] .moments-module {
+  margin-top: 4px;
+}
+
+.page[data-page="moments"] .page-header {
+  margin-bottom: 14px;
+}

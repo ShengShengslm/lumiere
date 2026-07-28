@@ -1,0 +1,33 @@
+.page[data-page="chat"] .api-status{display:none!important}
+.app-shell.chat-page .bottom-nav{display:none!important}
+.app-shell.chat-page .page[data-page="chat"]{padding-right:8px!important;padding-bottom:0!important;padding-left:8px!important}
+.app-shell.chat-page .page[data-page="chat"] .composer{bottom:8px!important}
+.page[data-page="chat"] .message-row{align-items:flex-start!important}
+.page[data-page="chat"] .message-row>.chat-avatar{display:flex!important;position:relative!important;flex:0 0 42px!important;width:42px!important;min-width:42px!important;height:42px!important;margin:0!important;border:2px solid rgba(255,255,255,.72);background-position:center!important;background-size:contain!important;background-repeat:no-repeat!important;font-size:14px;box-shadow:0 5px 15px rgba(49,67,87,.13);transform:none!important}
+.page[data-page="chat"] .incoming-row,.page[data-page="chat"] .outgoing-row{width:100%;margin-right:0!important;margin-left:0!important;padding-right:0!important;padding-left:0!important}
+.page[data-page="chat"] .conversation{padding-bottom:118px!important}
+.message-stack{display:flex;min-width:0;max-width:74%;flex-direction:column}.message-stack .message{max-width:100%!important}.message-timestamp{margin-top:3px;color:rgba(222,231,238,.68);font-size:9px;line-height:1;letter-spacing:.01em;white-space:nowrap;text-shadow:0 1px 2px rgba(16,28,40,.32)}.app-shell:not([data-mode="dark"]) .message-timestamp{color:rgba(79,101,120,.64);text-shadow:none}.incoming-row .message-stack{align-items:flex-start}.incoming-row .message-timestamp{align-self:flex-start}.outgoing-row .message-stack{align-items:flex-end}.outgoing-row .message-timestamp{align-self:flex-end}
+.scroll-to-bottom{position:absolute;z-index:12;right:22px;bottom:126px;display:grid;place-items:center;width:42px;height:42px;border:1px solid rgba(255,255,255,.6);border-radius:50%;background:rgba(232,242,248,.88);color:#52718a;font-size:21px;box-shadow:0 7px 20px rgba(45,63,82,.17);backdrop-filter:blur(16px);opacity:0;pointer-events:none;transform:translateY(8px);transition:.2s}
+.scroll-to-bottom.visible{opacity:1;pointer-events:auto;transform:none}
+.drawer-page-nav{display:grid;grid-template-columns:repeat(3,1fr);gap:7px;margin:2px 0 18px}
+.drawer-page-nav button{border:1px solid rgba(73,91,112,.12);border-radius:13px;padding:11px 4px;background:rgba(255,255,255,.5);color:#526174;font-size:12px}
+.history-chat{padding-right:42px!important;touch-action:pan-y}
+.history-chat .rename-chat{position:absolute;right:8px;top:50%;transform:translateY(-50%);display:grid;place-items:center;width:30px;height:30px;border:0;border-radius:50%;background:rgba(120,151,176,.1);color:#6d8295;font-size:14px}
+.history-chat.long-pressing{background:rgba(197,218,231,.62)!important;transform:scale(.985)}
+.memory-item{cursor:pointer}
+#memory-list{display:none!important}
+.memory-item p{display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:3;overflow:hidden}
+.memory-item::after{content:"查看全文与编辑";display:block;margin-left:22px;margin-top:9px;color:#7890a3;font-size:10px}
+.day-memory-list{display:grid;gap:7px;margin-top:10px}
+.day-memory-button{width:100%;border:0;border-radius:12px;padding:10px 12px;background:rgba(255,255,255,.42);color:#566779;text-align:left;font-size:12px;line-height:1.45}
+.memory-editor{width:min(88vw,520px);max-height:78vh;padding:0;border:1px solid rgba(255,255,255,.7);border-radius:24px;background:rgba(235,244,249,.97);color:#405166;box-shadow:0 24px 80px rgba(31,46,61,.28)}
+.memory-editor::backdrop{background:rgba(17,29,41,.42);backdrop-filter:blur(6px)}
+.memory-editor form{display:grid;gap:16px;padding:20px}
+.memory-editor-heading{display:flex;align-items:flex-start;justify-content:space-between}
+.memory-editor-heading small{color:#8a98a7;font-size:10px}
+.memory-editor-heading h2{margin:4px 0 0;font-size:20px}
+.memory-editor-heading>button{width:34px;height:34px;border:0;border-radius:50%;background:rgba(92,115,136,.1);color:#64788b;font-size:21px}
+.memory-editor textarea{box-sizing:border-box;width:100%;min-height:260px;max-height:48vh;resize:vertical;border:1px solid rgba(87,111,132,.14);border-radius:17px;padding:15px;background:rgba(255,255,255,.58);color:#34475a;font:14px/1.75 system-ui,sans-serif;outline:none}
+.memory-editor-actions{display:flex;justify-content:flex-end;gap:9px}
+.memory-editor-actions button{border:0;border-radius:13px;padding:10px 17px;background:rgba(98,126,151,.12);color:#52687b}
+.memory-editor-actions #memory-editor-save{background:#6685a4;color:white}

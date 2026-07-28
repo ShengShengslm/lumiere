@@ -1,0 +1,2 @@
+.app-shell:after{display:none!important}@media(display-mode:standalone){.bottom-nav{bottom:20px!important}.page{padding-bottom:112px}.page[data-page="chat"] .composer{bottom:111px}.page[data-page="chat"] .attachment-sheet{bottom:225px}}
+@media(display-mode:fullscreen){.bottom-nav{bottom:20px!important}}

@@ -1,0 +1,8 @@
+[Unit]
+Description=Lumiere proactive shadow push check
+After=lumiere.service network-online.target
+
+[Service]
+Type=oneshot
+EnvironmentFile=/opt/lumiere/.env
+ExecStart=/bin/sh -c '/usr/bin/curl --fail --silent --show-error --max-time 180 -X POST -H "x-push-secret: $PUSH_SECRET" http://127.0.0.1:3000/api/push/trigger >/dev/null'

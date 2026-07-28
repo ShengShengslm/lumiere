@@ -1,0 +1,3 @@
+@media(display-mode:standalone){html,body{width:100%;height:100vh!important;min-height:100vh!important;margin:0;overflow:hidden}.app-shell{position:fixed!important;top:0!important;right:0!important;bottom:auto!important;left:0!important;width:100%!important;height:100vh!important;min-height:100vh!important;max-height:100vh!important;margin:0!important}}
+@media(display-mode:fullscreen){html,body,.app-shell{height:100vh!important;min-height:100vh!important;max-height:100vh!important}}
+@supports(-webkit-touch-callout:none){@media(display-mode:standalone){.app-shell{height:100vh!important;min-height:100vh!important}}}

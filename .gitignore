@@ -1,0 +1,13 @@
+.env
+.env.*
+!.env.example
+dist/
+node_modules/
+tmp/
+*.log
+*.zip
+*.tar.gz
+语音备份/
+data/*.sqlite
+data/*.sqlite-*
+data/voice-cache/

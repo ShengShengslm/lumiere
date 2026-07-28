@@ -1,0 +1,1 @@
+@media(max-width:699px){.page[data-page="chat"] .composer{bottom:calc(103px + env(safe-area-inset-bottom,0px))}.page[data-page="chat"] .attachment-sheet{bottom:calc(217px + env(safe-area-inset-bottom,0px))}.chat-drawer{top:max(12px,env(safe-area-inset-top,0px));bottom:max(12px,env(safe-area-inset-bottom,0px));left:max(12px,env(safe-area-inset-left,0px))}}
