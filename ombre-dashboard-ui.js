@@ -4,6 +4,8 @@
   const list = document.querySelector("#ob-list");
   const search = document.querySelector("#ob-search");
   const dialog = document.querySelector("#ob-detail");
+  const browser = document.querySelector("#ob-browser");
+  const entry = document.querySelector("#ob-entry");
   const filters = [
     { key: "all", label: "全部" },
     { key: "dynamic", label: "动态", type: "dynamic" },
@@ -23,8 +25,13 @@
   }
   function renderStatus(status) {
     const live = document.querySelector("#ob-live");
+    const entryLive = document.querySelector("#ob-entry-live");
+    const total = Number(status?.total || 0);
     live.classList.toggle("online", Boolean(status?.available));
     live.querySelector("span").textContent = status?.available ? (status.fallback ? "Vault 已连接" : "OB 在线") : "OB 暂时离线";
+    entry.classList.toggle("online", Boolean(status?.available));
+    entryLive.textContent = status?.available ? (status.fallback ? "Vault 已连接" : "OB 在线") : "暂时离线";
+    document.querySelector("#ob-entry-total").textContent = total ? `${total} 条记忆` : "还没有记忆";
     [["total", status?.total], ["dynamic", status?.dynamic], ["permanent", status?.permanent], ["archived", status?.archived]].forEach(([key, value]) => {
       document.querySelector(`[data-ob-stat="${key}"] b`).textContent = Number(value || 0);
     });
@@ -65,6 +72,13 @@
     const card = event.target.closest("[data-ob-id]");
     if (card) openDetail(card.dataset.obId);
     if (event.target.closest("#ob-retry")) load();
+  });
+  entry.addEventListener("click", () => {
+    if (!browser.open) browser.showModal();
+    load();
+  });
+  browser.addEventListener("click", (event) => {
+    if (event.target === browser || event.target.closest("[data-ob-browser-close]")) browser.close();
   });
   dialog.addEventListener("click", (event) => { if (event.target === dialog || event.target.closest("[data-ob-close]")) dialog.close(); });
   search.addEventListener("input", () => { clearTimeout(timer); timer = setTimeout(load, 300); });

@@ -54,7 +54,7 @@
   <link rel="stylesheet" href="moments.css" />
   <link rel="stylesheet" href="moments-page.css" />
   <link rel="stylesheet" href="call-caption-fix.css?v=44" />
-  <link rel="stylesheet" href="ombre-dashboard-ui.css?v=45" />
+  <link rel="stylesheet" href="ombre-dashboard-ui.css?v=46" />
   <link rel="stylesheet" href="pet.css" />
 </head>
 <body>
@@ -126,11 +126,12 @@
 
     <section class="page" data-page="memory">
       <header class="page-header compact"><div><p class="eyebrow">LONG-TERM MEMORY</p><h1>Memories</h1><p class="subtle">Supabase 对话摘要与 Ombre Brain 情绪记忆会在这里汇合。</p><span class="ombre-status" id="ombre-status">正在检查 Ombre Brain</span></div></header>
-      <section class="ob-dashboard" id="ob-dashboard"><div class="ob-dashboard-head"><div><small>OMBRE BRAIN</small><h2>他的记忆库</h2></div><div class="ob-live" id="ob-live"><i></i><span>正在连接</span></div></div><div class="glass ob-overview"><div class="ob-stat" data-ob-stat="total"><b>0</b><span>全部记忆</span></div><div class="ob-stat" data-ob-stat="dynamic"><b>0</b><span>动态</span></div><div class="ob-stat" data-ob-stat="permanent"><b>0</b><span>永久</span></div><div class="ob-stat" data-ob-stat="archived"><b>0</b><span>归档</span></div></div><div class="glass ob-tools"><label class="ob-search"><svg viewBox="0 0 24 24"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m15.5 15.5 5 5"/></svg><input id="ob-search" type="search" placeholder="搜索他记住的事…" autocomplete="off"></label><div class="ob-filters" id="ob-filters"></div></div><div class="ob-list" id="ob-list"><div class="glass ob-empty">正在整理他的记忆…</div></div></section>
+      <button type="button" class="glass ob-entry" id="ob-entry"><span class="ob-entry-mark" aria-hidden="true"><i></i><b>OB</b></span><span class="ob-entry-copy"><small>OMBRE BRAIN</small><strong>他的记忆库</strong><em><span id="ob-entry-total">正在整理记忆</span><span class="ob-entry-live" id="ob-entry-live">正在连接</span></em></span><span class="ob-entry-arrow">›</span></button>
       <article class="glass calendar-card"><div class="calendar-heading"><div><span class="card-label" id="memory-year"></span><h2 id="memory-month">本月</h2></div><button class="text-button" id="today-button">回到今天</button></div><div class="week"><span>一</span><span>二</span><span>三</span><span>四</span><span>五</span><span>六</span><span>日</span></div><div class="calendar" id="calendar"></div><div class="day-summary" id="day-summary" aria-live="polite"><span class="summary-date">长期记忆</span><h3>正在读取</h3><p>记忆只会来自你的真实对话。</p></div></article>
       <button type="button" class="glass diary-card" id="diary-card"><span class="diary-emblem" aria-hidden="true"><i></i><b>G</b></span><span class="diary-card-copy"><small>GU KE'S JOURNAL</small><strong>顾克的日记</strong><em id="diary-card-status">日记本还是空的</em></span><span class="diary-card-arrow">›</span></button>
       <div class="memory-list" id="memory-list"><div class="glass honest-empty"><strong>正在读取真实记忆</strong><p>不会再显示演示日记。</p></div></div><article class="glass ombre-catalog" id="ombre-catalog" hidden><small>OMBRE BRAIN · 情绪记忆目录</small><pre id="ombre-catalog-content"></pre></article>
     </section>
+    <dialog class="ob-browser" id="ob-browser"><section class="ob-dashboard" id="ob-dashboard"><header class="ob-browser-head"><button type="button" class="ob-browser-back" data-ob-browser-close aria-label="返回">‹</button><div><small>OMBRE BRAIN</small><h2>他的记忆库</h2></div><div class="ob-live" id="ob-live"><i></i><span>正在连接</span></div></header><div class="glass ob-overview"><div class="ob-stat" data-ob-stat="total"><b>0</b><span>全部记忆</span></div><div class="ob-stat" data-ob-stat="dynamic"><b>0</b><span>动态</span></div><div class="ob-stat" data-ob-stat="permanent"><b>0</b><span>永久</span></div><div class="ob-stat" data-ob-stat="archived"><b>0</b><span>归档</span></div></div><div class="glass ob-tools"><label class="ob-search"><svg viewBox="0 0 24 24"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m15.5 15.5 5 5"/></svg><input id="ob-search" type="search" placeholder="搜索他记住的事…" autocomplete="off"></label><div class="ob-filters" id="ob-filters"></div></div><div class="ob-list" id="ob-list"><div class="glass ob-empty">正在整理他的记忆…</div></div></section></dialog>
     <dialog class="ob-sheet" id="ob-detail"><div class="ob-sheet-wrap"></div></dialog>
 
     <section class="page" data-page="moments">
