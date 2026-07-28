@@ -1,0 +1,72 @@
+/*
+ * Call captions must remain identical in Safari and in the installed iOS PWA.
+ * This file intentionally loads after every generic glass/theme fallback.
+ */
+html .app-shell .page.call-page .call-caption.glass{
+  position:relative;
+  z-index:2;
+  display:grid;
+  flex:0 1 auto;
+  grid-template-rows:minmax(82px,1.6fr) minmax(52px,1fr);
+  width:100%;
+  min-height:134px;
+  max-height:210px;
+  margin-top:auto;
+  padding:0!important;
+  overflow:auto;
+  border:1px solid rgba(255,255,255,.28)!important;
+  border-radius:25px;
+  background:rgba(8,19,30,.9)!important;
+  color:#f7fbff!important;
+  box-shadow:0 18px 50px rgba(0,0,0,.38),inset 0 1px rgba(255,255,255,.08)!important;
+  -webkit-backdrop-filter:blur(24px) saturate(125%)!important;
+  backdrop-filter:blur(24px) saturate(125%)!important;
+  -webkit-overflow-scrolling:touch;
+}
+html .app-shell .page.call-page .call-caption>div{
+  min-width:0;
+  min-height:0;
+  padding:13px 16px;
+  background:transparent!important;
+}
+html .app-shell .page.call-page .call-caption>div+div{
+  border-top:1px solid rgba(255,255,255,.13);
+  background:rgba(255,255,255,.08)!important;
+}
+html .app-shell .page.call-page .call-caption small{
+  display:block;
+  margin-bottom:5px;
+  color:rgba(247,251,255,.58)!important;
+  opacity:1!important;
+}
+html .app-shell .page.call-page .call-caption p,
+html .app-shell .page.call-page .call-caption #call-translation,
+html .app-shell .page.call-page .call-caption #call-spoken{
+  display:block!important;
+  margin:0!important;
+  overflow-wrap:anywhere;
+  color:#fff!important;
+  opacity:1!important;
+  visibility:visible!important;
+  -webkit-text-fill-color:#fff!important;
+  text-shadow:0 1px 2px rgba(0,0,0,.55);
+}
+html .app-shell .page.call-page .call-caption #call-translation{
+  font-size:15px;
+  line-height:1.55;
+}
+html .app-shell .page.call-page .call-caption #call-spoken{
+  color:rgba(255,255,255,.88)!important;
+  -webkit-text-fill-color:rgba(255,255,255,.88)!important;
+  font-size:12px;
+  line-height:1.45;
+}
+@media(max-height:740px){
+  html .app-shell .page.call-page .call-caption.glass{
+    grid-template-rows:minmax(66px,1.4fr) minmax(44px,1fr);
+    min-height:110px;
+    max-height:150px;
+  }
+  html .app-shell .page.call-page .call-caption>div{padding:8px 12px}
+  html .app-shell .page.call-page .call-caption #call-translation{font-size:14px;line-height:1.4}
+}
