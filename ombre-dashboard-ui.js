@@ -25,6 +25,13 @@
       const touch = event.touches[0];
       swipe = { x: touch.clientX, y: touch.clientY, time: Date.now() };
     }, { passive: true });
+    target.addEventListener("touchmove", (event) => {
+      if (!swipe || event.touches.length !== 1) return;
+      const touch = event.touches[0];
+      const dx = touch.clientX - swipe.x;
+      const dy = touch.clientY - swipe.y;
+      if (dx > 10 && dx > Math.abs(dy) * 1.2) event.preventDefault();
+    }, { passive: false });
     target.addEventListener("touchend", (event) => {
       if (!swipe) return;
       const touch = event.changedTouches[0];

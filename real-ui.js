@@ -356,6 +356,13 @@
     const touch = event.touches[0];
     drivesSwipe = { x: touch.clientX, y: touch.clientY, time: Date.now() };
   }, { passive: true });
+  $("#drives-dialog")?.addEventListener("touchmove", (event) => {
+    if (!drivesSwipe || event.touches.length !== 1) return;
+    const touch = event.touches[0];
+    const dx = touch.clientX - drivesSwipe.x;
+    const dy = touch.clientY - drivesSwipe.y;
+    if (dx > 10 && dx > Math.abs(dy) * 1.2) event.preventDefault();
+  }, { passive: false });
   $("#drives-dialog")?.addEventListener("touchend", (event) => {
     if (!drivesSwipe) return;
     const touch = event.changedTouches[0];

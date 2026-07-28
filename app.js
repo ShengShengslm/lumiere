@@ -3,6 +3,7 @@ const navButtons=[...document.querySelectorAll('.bottom-nav button')];
 const toast=document.querySelector('#toast');
 let tasks=(()=>{try{const saved=JSON.parse(localStorage.getItem('lumiere-tasks')||'[]');return Array.isArray(saved)?saved:[]}catch{return[]}})();
 if('scrollRestoration' in history)history.scrollRestoration='manual';window.scrollTo(0,0);pages.forEach(page=>page.scrollTop=0);
+const homePage=document.querySelector('[data-page="home"]');let homePan=null;homePage.addEventListener('touchstart',event=>{if(event.touches.length!==1){homePan=null;return}const touch=event.touches[0];homePan={x:touch.clientX,y:touch.clientY}},{passive:true});homePage.addEventListener('touchmove',event=>{if(!homePan||event.touches.length!==1)return;const touch=event.touches[0];const dx=touch.clientX-homePan.x;const dy=touch.clientY-homePan.y;if(Math.abs(dx)>10&&Math.abs(dx)>Math.abs(dy)*1.2)event.preventDefault()},{passive:false});homePage.addEventListener('touchend',()=>homePan=null,{passive:true});homePage.addEventListener('touchcancel',()=>homePan=null,{passive:true});
 
 const splashScreen=document.querySelector('#splash-screen');
 function runSplashScreen(){const reduced=window.matchMedia('(prefers-reduced-motion: reduce)').matches;if(reduced)splashScreen.classList.add('reduced');setTimeout(()=>{splashScreen.classList.add('finished');setTimeout(()=>splashScreen.remove(),800)},reduced?900:5000)}
