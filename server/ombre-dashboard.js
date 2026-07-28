@@ -30,23 +30,27 @@ async function ensureLogin() {
   return loginPromise;
 }
 
-export async function ombreDashboardRequest(path, retried = false) {
+export async function ombreDashboardRequest(path, options = {}, retried = false) {
   if (!ombreDashboardConfigured()) throw Object.assign(new Error("Ombre Dashboard is not configured"), { code: "OMBRE_NOT_CONFIGURED" });
   await ensureLogin();
   const headers = {
     Accept: "application/json",
+    ...(options.body ? { "Content-Type": "application/json" } : {}),
     ...(sessionCookie ? { Cookie: sessionCookie } : {}),
-    ...(!sessionCookie && config.ombre.token ? { Authorization: `Bearer ${config.ombre.token}` } : {})
+    ...(!sessionCookie && config.ombre.token ? { Authorization: `Bearer ${config.ombre.token}` } : {}),
+    ...(options.headers || {})
   };
   const response = await fetch(`${baseUrl()}${path}`, {
+    method: options.method || "GET",
     headers,
+    body: options.body ? JSON.stringify(options.body) : undefined,
     signal: AbortSignal.timeout(config.ombre.dashboardTimeoutMs)
   });
   captureCookie(response);
   if (response.status === 401 && !retried && config.ombre.dashboardPassword) {
     sessionCookie = "";
     await ensureLogin();
-    return ombreDashboardRequest(path, true);
+    return ombreDashboardRequest(path, options, true);
   }
   if (!response.ok) throw Object.assign(new Error(`Ombre Dashboard ${response.status}`), { code: response.status === 401 ? "OMBRE_AUTH_FAILED" : "OMBRE_UPSTREAM_ERROR", status: response.status });
   return response.json();

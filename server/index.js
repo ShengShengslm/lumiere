@@ -463,6 +463,40 @@ translation 必须完整表达 spoken 的意思，但不要添加原句没有的
       return item ? json(res, 200, item) : json(res, 404, { error: "没有找到这条 OB 记忆" });
     }
   }
+  if (ombreBucketMatch && req.method === "PATCH") {
+    const id = decodeURIComponent(ombreBucketMatch[1]);
+    const body = await readBody(req);
+    const edit = {
+      name: String(body.name || "").trim().slice(0, 160),
+      content: String(body.content || "").trim().slice(0, 50000)
+    };
+    if (!edit.name || !edit.content) return json(res, 400, { error: "标题和记忆内容不能为空" });
+    try {
+      await ombreDashboardRequest(`/api/bucket/${encodeURIComponent(id)}/edit`, { method: "PATCH", body: edit });
+      const data = await ombreDashboardRequest(`/api/bucket/${encodeURIComponent(id)}`);
+      return json(res, 200, normalizeOmbreBucket(data.bucket || data));
+    } catch (error) {
+      return json(res, Number(error.status || 502), { error: "OB 暂时无法保存这次编辑" });
+    }
+  }
+  const ombreActionMatch = url.pathname.match(/^\/api\/ombre-dashboard\/buckets\/(.+)\/actions$/);
+  if (ombreActionMatch && req.method === "POST") {
+    const id = decodeURIComponent(ombreActionMatch[1]);
+    const body = await readBody(req);
+    const actions = new Set(["pin", "important", "noise", "delete"]);
+    const action = String(body.action || "").toLowerCase();
+    if (!actions.has(action)) return json(res, 400, { error: "不支持的 OB 记忆操作" });
+    try {
+      const result = await ombreDashboardRequest("/api/import/review", {
+        method: "POST",
+        body: { decisions: [{ bucket_id: id, action }] }
+      });
+      if (Number(result.applied || 0) !== 1 || result.errors) throw Object.assign(new Error("OB action was not applied"), { status: 409 });
+      return json(res, 200, { ok: true, action, archived: action === "delete" || action === "noise" });
+    } catch (error) {
+      return json(res, Number(error.status || 502), { error: "OB 暂时无法完成这个操作" });
+    }
+  }
 
   if (url.pathname === "/api/sessions" && req.method === "GET") return json(res, 200, await store.listSessions());
   if (url.pathname === "/api/sessions" && req.method === "POST") {

@@ -63,7 +63,7 @@
     dialog.showModal();
     try {
       const item = await window.LumiereAPI.request(`/ombre-dashboard/buckets/${encodeURIComponent(id)}`);
-      dialog.querySelector(".ob-sheet-wrap").innerHTML = `<button class="ob-sheet-handle" data-ob-close aria-label="关闭"></button><span class="ob-sheet-kicker">OMBRE BRAIN · ${esc(item.type)}</span><h2>${esc(item.name)}</h2><div class="ob-sheet-meta">${item.pinned ? "已钉选 · " : ""}${item.resolved ? "已解决 · " : ""}被想起 ${Number(item.activationCount || 0)} 次</div><div class="ob-sheet-content">${esc(item.content || "(empty)")}</div><div class="ob-sheet-grid"><div class="ob-sheet-row"><span>重要度</span><b class="ob-importance">${importance(item.importance)}</b></div><div class="ob-sheet-row"><span>创建于</span><b>${esc(fullDate(item.createdAt))}</b></div><div class="ob-sheet-row"><span>最近激活</span><b>${esc(fullDate(item.lastActiveAt))}</b></div>${item.valence !== null ? `<div class="ob-sheet-row"><span>Valence</span><b>${esc(item.valence)}</b></div>` : ""}${item.arousal !== null ? `<div class="ob-sheet-row"><span>Arousal</span><b>${esc(item.arousal)}</b></div>` : ""}</div><div class="ob-sheet-tags">${tags(item).map((tag) => `<span class="ob-tag">${esc(tag)}</span>`).join("")}</div><button type="button" class="ob-sheet-close" data-ob-close>收起记忆</button>`;
+      dialog.querySelector(".ob-sheet-wrap").innerHTML = `<button class="ob-sheet-handle" data-ob-close aria-label="关闭"></button><span class="ob-sheet-kicker">OMBRE BRAIN · ${esc(item.type)}</span><h2>${esc(item.name)}</h2><div class="ob-sheet-meta">${item.pinned ? "已固定 · " : ""}${item.resolved ? "已解决 · " : ""}被想起 ${Number(item.activationCount || 0)} 次</div><form class="ob-edit-form" data-ob-edit="${esc(item.id)}"><label>记忆标题<input name="name" maxlength="160" value="${esc(item.name)}" required></label><label>记忆内容<textarea name="content" maxlength="50000" required>${esc(item.content || "")}</textarea></label><div class="ob-edit-footer"><span class="ob-edit-status" aria-live="polite"></span><button type="submit">保存修改</button></div></form><div class="ob-memory-actions"><button type="button" data-ob-action="pin" data-ob-id="${esc(item.id)}">⌖ 固定</button><button type="button" data-ob-action="important" data-ob-id="${esc(item.id)}">☆ 重要</button><button type="button" data-ob-action="noise" data-ob-id="${esc(item.id)}">▧ 噪声</button><button type="button" class="danger" data-ob-action="delete" data-ob-id="${esc(item.id)}">× 删除到档案</button></div><div class="ob-sheet-grid"><div class="ob-sheet-row"><span>重要度</span><b class="ob-importance">${importance(item.importance)}</b></div><div class="ob-sheet-row"><span>创建于</span><b>${esc(fullDate(item.createdAt))}</b></div><div class="ob-sheet-row"><span>最近激活</span><b>${esc(fullDate(item.lastActiveAt))}</b></div>${item.valence !== null ? `<div class="ob-sheet-row"><span>Valence</span><b>${esc(item.valence)}</b></div>` : ""}${item.arousal !== null ? `<div class="ob-sheet-row"><span>Arousal</span><b>${esc(item.arousal)}</b></div>` : ""}</div><div class="ob-sheet-tags">${tags(item).map((tag) => `<span class="ob-tag">${esc(tag)}</span>`).join("")}</div><button type="button" class="ob-sheet-close" data-ob-close>收起记忆</button>`;
     } catch { dialog.querySelector(".ob-sheet-wrap").innerHTML = '<button class="ob-sheet-handle" data-ob-close></button><div class="ob-empty">这条记忆暂时没有回应</div>'; }
   }
   root.addEventListener("click", (event) => {
@@ -80,7 +80,49 @@
   browser.addEventListener("click", (event) => {
     if (event.target === browser || event.target.closest("[data-ob-browser-close]")) browser.close();
   });
-  dialog.addEventListener("click", (event) => { if (event.target === dialog || event.target.closest("[data-ob-close]")) dialog.close(); });
+  dialog.addEventListener("submit", async (event) => {
+    const form = event.target.closest("[data-ob-edit]");
+    if (!form) return;
+    event.preventDefault();
+    const status = form.querySelector(".ob-edit-status");
+    const submit = form.querySelector('[type="submit"]');
+    status.textContent = "正在保存…";
+    submit.disabled = true;
+    try {
+      const data = new FormData(form);
+      await window.LumiereAPI.request(`/ombre-dashboard/buckets/${encodeURIComponent(form.dataset.obEdit)}`, {
+        method: "PATCH",
+        body: JSON.stringify({ name: data.get("name"), content: data.get("content") })
+      });
+      status.textContent = "已保存";
+      await load();
+    } catch (error) {
+      status.textContent = error.message || "保存失败";
+    } finally { submit.disabled = false; }
+  });
+  dialog.addEventListener("click", async (event) => {
+    if (event.target === dialog || event.target.closest("[data-ob-close]")) { dialog.close(); return; }
+    const button = event.target.closest("[data-ob-action]");
+    if (!button) return;
+    const action = button.dataset.obAction;
+    const warnings = {
+      noise: "标为噪声后，这条记忆会被解决并淡出日常记忆。继续吗？",
+      delete: "这会把记忆移入删除档案并从日常界面隐藏，但不会直接销毁文件。继续吗？"
+    };
+    if (warnings[action] && !window.confirm(warnings[action])) return;
+    button.disabled = true;
+    try {
+      await window.LumiereAPI.request(`/ombre-dashboard/buckets/${encodeURIComponent(button.dataset.obId)}/actions`, {
+        method: "POST",
+        body: JSON.stringify({ action })
+      });
+      dialog.close();
+      await load();
+    } catch (error) {
+      window.alert(error.message || "操作失败");
+      button.disabled = false;
+    }
+  });
   search.addEventListener("input", () => { clearTimeout(timer); timer = setTimeout(load, 300); });
   document.querySelector('[data-target="memory"]').addEventListener("click", load);
   renderFilters();
