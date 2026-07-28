@@ -1,6 +1,6 @@
 import { config } from "./config.js";
 
-let sessionCookie = "";
+let sessionCookie = config.ombre.dashboardSession ? `ombre_session=${config.ombre.dashboardSession}` : "";
 let loginPromise = null;
 
 const baseUrl = () => config.ombre.dashboardUrl || config.ombre.url;
