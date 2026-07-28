@@ -15,6 +15,26 @@
   ];
   let filter = "all";
   let timer;
+  const bindSwipeClose = (target, close, ignoredSelector = "input,textarea,select") => {
+    let swipe = null;
+    target.addEventListener("touchstart", (event) => {
+      if (event.touches.length !== 1 || event.target.closest(ignoredSelector)) {
+        swipe = null;
+        return;
+      }
+      const touch = event.touches[0];
+      swipe = { x: touch.clientX, y: touch.clientY, time: Date.now() };
+    }, { passive: true });
+    target.addEventListener("touchend", (event) => {
+      if (!swipe) return;
+      const touch = event.changedTouches[0];
+      const dx = touch.clientX - swipe.x;
+      const dy = touch.clientY - swipe.y;
+      const elapsed = Date.now() - swipe.time;
+      swipe = null;
+      if (dx > 85 && Math.abs(dy) < 55 && dx > Math.abs(dy) * 1.5 && elapsed < 900) close();
+    }, { passive: true });
+  };
   const esc = (value) => String(value ?? "").replace(/[&<>"']/g, (char) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[char]);
   const time = (value) => value && !Number.isNaN(Date.parse(value)) ? new Date(value).toLocaleString("zh-CN", { month: "numeric", day: "numeric", hour: "2-digit", minute: "2-digit", hour12: false }) : "";
   const importance = (value) => "●".repeat(Math.max(0, Math.min(10, Math.round(Number(value) || 0)))) + "○".repeat(10 - Math.max(0, Math.min(10, Math.round(Number(value) || 0))));
@@ -80,6 +100,7 @@
   browser.addEventListener("click", (event) => {
     if (event.target === browser || event.target.closest("[data-ob-browser-close]")) browser.close();
   });
+  bindSwipeClose(browser, () => browser.close(), "input,textarea,select,.ob-filters");
   dialog.addEventListener("submit", async (event) => {
     const form = event.target.closest("[data-ob-edit]");
     if (!form) return;
@@ -123,6 +144,7 @@
       button.disabled = false;
     }
   });
+  bindSwipeClose(dialog, () => dialog.close(), "input,textarea,select,.ob-memory-actions,.ob-edit-footer");
   search.addEventListener("input", () => { clearTimeout(timer); timer = setTimeout(load, 300); });
   document.querySelector('[data-target="memory"]').addEventListener("click", load);
   renderFilters();

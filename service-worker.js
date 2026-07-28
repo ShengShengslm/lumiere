@@ -1,4 +1,4 @@
-const CACHE = "lumiere-v47";
+const CACHE = "lumiere-v48";
 const ASSETS = ["/", "/index.html", "/app.js", "/api.js", "/voice-call.js", "/push-notifications.js", "/ombre-dashboard-ui.js", "/real-ui.js", "/pet.js", "/styles.css", "/voice-call.css", "/call-caption-fix.css?v=44", "/ombre-dashboard-ui.css?v=47", "/api-integration.css", "/real-ui.css", "/pet.css", "/multi-bubble.css", "/moments.css", "/moments-page.css", "/manifest.webmanifest", "/app-icon-512.png", "/pet-assets/idle.gif", "/pet-assets/thinking.gif", "/pet-assets/working.gif", "/pet-assets/happy.gif", "/pet-assets/error.gif", "/pet-assets/sleeping.gif", "/pet-assets/poke.gif"];
 self.addEventListener("install", (event) => event.waitUntil(caches.open(CACHE).then((cache) => cache.addAll(ASSETS)).then(() => self.skipWaiting())));
 self.addEventListener("activate", (event) => event.waitUntil(caches.keys().then((keys) => Promise.all(keys.filter((key) => key !== CACHE).map((key) => caches.delete(key)))).then(() => self.clients.claim())));

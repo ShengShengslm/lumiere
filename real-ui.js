@@ -347,6 +347,24 @@
     $("#drives-dialog").hidden = true;
     document.body.classList.remove("drives-dialog-open");
   };
+  let drivesSwipe = null;
+  $("#drives-dialog")?.addEventListener("touchstart", (event) => {
+    if (event.touches.length !== 1 || event.target.closest("button,input,textarea,select,a")) {
+      drivesSwipe = null;
+      return;
+    }
+    const touch = event.touches[0];
+    drivesSwipe = { x: touch.clientX, y: touch.clientY, time: Date.now() };
+  }, { passive: true });
+  $("#drives-dialog")?.addEventListener("touchend", (event) => {
+    if (!drivesSwipe) return;
+    const touch = event.changedTouches[0];
+    const dx = touch.clientX - drivesSwipe.x;
+    const dy = touch.clientY - drivesSwipe.y;
+    const elapsed = Date.now() - drivesSwipe.time;
+    drivesSwipe = null;
+    if (dx > 85 && Math.abs(dy) < 55 && dx > Math.abs(dy) * 1.5 && elapsed < 900) closeDrives();
+  }, { passive: true });
   $("#drives-card")?.addEventListener("click", openDrives);
   $("#drives-card")?.addEventListener("keydown", (event) => { if (event.key === "Enter" || event.key === " ") { event.preventDefault(); openDrives(); } });
   $("#drives-dialog-close")?.addEventListener("click", closeDrives);
