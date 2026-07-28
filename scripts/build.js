@@ -4,7 +4,7 @@ import { basename, resolve } from "node:path";
 const root = resolve(process.cwd());
 const output = resolve(root, "dist");
 const files = [
-  "index.html", "app.js", "api.js", "voice-call.js", "real-ui.js", "pet.js", "service-worker.js", "manifest.webmanifest",
+  "index.html", "app.js", "api.js", "voice-call.js", "push-notifications.js", "real-ui.js", "ombre-dashboard-ui.js", "pet.js", "service-worker.js", "manifest.webmanifest",
   "app-icon-512.png", "app-icon.svg", "apple-touch-icon.png", "apple-touch-icon-152.png", "apple-touch-icon-167.png"
 ];
 const css = (await import("node:fs/promises")).readdir(root).then((names) => names.filter((name) => name.endsWith(".css")));

@@ -98,6 +98,9 @@ export const config = {
   },
   ombre: {
     url: cleanUrl(process.env.OMBRE_BRAIN_URL),
+    dashboardUrl: cleanUrl(process.env.OMBRE_DASHBOARD_URL || process.env.OMBRE_BRAIN_URL),
+    dashboardPassword: process.env.OMBRE_DASHBOARD_PASSWORD || "",
+    dashboardTimeoutMs: number(process.env.OMBRE_DASHBOARD_TIMEOUT_MS, 8000),
     vaultPath: process.env.OMBRE_BRAIN_VAULT_PATH || "",
     token: process.env.OMBRE_BRAIN_TOKEN || "",
     timeoutMs: number(process.env.OMBRE_BRAIN_TIMEOUT_MS, 3000),

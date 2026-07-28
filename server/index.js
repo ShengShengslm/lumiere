@@ -19,6 +19,7 @@ import { describeAndRememberTone } from "./call-tone.js";
 import { answerCallInvite, getCallInvite, maybeCreateProactiveCall, saveCallRecord } from "./call-invites.js";
 import { cleanBackedUpVoiceCache } from "./voice-cache.js";
 import { removeWebPushSubscription, saveWebPushSubscription, webPushStatus } from "./web-push.js";
+import { dashboardItems, normalizeOmbreBucket, ombreDashboardConfigured, ombreDashboardRequest } from "./ombre-dashboard.js";
 
 const locks = new Map();
 const breathCache = new Map();
@@ -402,6 +403,65 @@ translation 必须完整表达 spoken 的意思，但不要添加原句没有的
   if (url.pathname === "/api/ombre/catalog" && req.method === "GET") {
     const status = await ombre.health();
     return json(res, 200, { ...status, catalog: status.connected ? await ombre.catalog() : null });
+  }
+  if (url.pathname === "/api/ombre-dashboard/status" && req.method === "GET") {
+    try {
+      const data = await ombreDashboardRequest("/api/status");
+      const buckets = data.buckets || {};
+      return json(res, 200, {
+        available: true,
+        version: data.version || null,
+        total: Number(buckets.total ?? data.total ?? 0),
+        permanent: Number(buckets.permanent ?? 0),
+        dynamic: Number(buckets.dynamic ?? 0),
+        archived: Number(buckets.archive ?? buckets.archived ?? 0)
+      });
+    } catch {
+      const items = (await listOmbreMemories()).map(normalizeOmbreBucket);
+      return json(res, 200, {
+        available: items.length > 0,
+        fallback: true,
+        configured: ombreDashboardConfigured(),
+        total: items.length,
+        permanent: items.filter((item) => item.type === "permanent").length,
+        dynamic: items.filter((item) => item.type === "dynamic").length,
+        archived: items.filter((item) => item.type === "archived").length
+      });
+    }
+  }
+  if (url.pathname === "/api/ombre-dashboard/buckets" && req.method === "GET") {
+    let items;
+    try { items = dashboardItems(await ombreDashboardRequest("/api/buckets")); }
+    catch { items = (await listOmbreMemories()).map(normalizeOmbreBucket); }
+    const type = String(url.searchParams.get("type") || "").toLowerCase();
+    const state = String(url.searchParams.get("state") || "").toLowerCase();
+    if (type) items = items.filter((item) => item.type === type);
+    if (state === "pinned") items = items.filter((item) => item.pinned);
+    items.sort((a, b) => new Date(b.lastActiveAt || b.createdAt || 0) - new Date(a.lastActiveAt || a.createdAt || 0));
+    return json(res, 200, { items, total: items.length });
+  }
+  if (url.pathname === "/api/ombre-dashboard/search" && req.method === "GET") {
+    const query = String(url.searchParams.get("q") || "").trim().slice(0, 160);
+    if (!query) return json(res, 200, { items: [], total: 0, query });
+    let items;
+    try { items = dashboardItems(await ombreDashboardRequest(`/api/search?q=${encodeURIComponent(query)}`)); }
+    catch {
+      const needle = query.toLowerCase();
+      items = (await listOmbreMemories()).map(normalizeOmbreBucket)
+        .filter((item) => `${item.name} ${item.content} ${item.tags.join(" ")} ${item.domains.join(" ")}`.toLowerCase().includes(needle));
+    }
+    return json(res, 200, { items, total: items.length, query });
+  }
+  const ombreBucketMatch = url.pathname.match(/^\/api\/ombre-dashboard\/buckets\/(.+)$/);
+  if (ombreBucketMatch && req.method === "GET") {
+    const id = decodeURIComponent(ombreBucketMatch[1]);
+    try {
+      const data = await ombreDashboardRequest(`/api/bucket/${encodeURIComponent(id)}`);
+      return json(res, 200, normalizeOmbreBucket(data.bucket || data));
+    } catch {
+      const item = (await listOmbreMemories()).map(normalizeOmbreBucket).find((entry) => entry.id === id);
+      return item ? json(res, 200, item) : json(res, 404, { error: "没有找到这条 OB 记忆" });
+    }
   }
 
   if (url.pathname === "/api/sessions" && req.method === "GET") return json(res, 200, await store.listSessions());
