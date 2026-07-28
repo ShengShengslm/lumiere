@@ -70,7 +70,7 @@ async function sendBark(body) {
   return { configured: true, delivered: true };
 }
 
-export async function sendCallBark(reason) {
+export async function sendCallBark(reason, inviteId = "") {
   if (!config.push.barkUrl) return { configured: false, delivered: false };
   const response = await fetch(config.push.barkUrl, {
     method: "POST",
@@ -82,7 +82,7 @@ export async function sendCallBark(reason) {
       level: "timeSensitive",
       call: "1",
       badge: 1,
-      url: config.push.publicAppUrl,
+      url: `${config.push.publicAppUrl}/?source=bark-call${inviteId ? `&call=${encodeURIComponent(inviteId)}` : ""}`,
       icon: config.push.iconUrl
     }),
     signal: AbortSignal.timeout(10_000)

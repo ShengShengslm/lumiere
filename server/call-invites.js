@@ -98,12 +98,13 @@ export async function maybeCreateProactiveCall({ force = false } = {}) {
     };
     state.lastCallDate = today;
     save();
-    let webPush = { configured: false, delivered: 0, failed: 0 };
-    try { webPush = await sendCallWebPush({ inviteId: state.invite.id, reason }); }
-    catch (error) { console.warn("[call] web push:", error.message); }
     let bark = { configured: false, delivered: false };
-    if (!webPush.delivered) {
-      try { bark = await sendCallBark(reason); } catch (error) { console.warn("[call] bark:", error.message); }
+    try { bark = await sendCallBark(reason, state.invite.id); }
+    catch (error) { console.warn("[call] bark:", error.message); }
+    let webPush = { configured: false, delivered: 0, failed: 0 };
+    if (!bark.delivered) {
+      try { webPush = await sendCallWebPush({ inviteId: state.invite.id, reason }); }
+      catch (error) { console.warn("[call] web push:", error.message); }
     }
     return { created: true, invite: state.invite, webPush, bark };
   } finally { checking = false; }
