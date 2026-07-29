@@ -15,8 +15,8 @@
         <span>PRIVATE ARCHIVE</span><b>NO. 0627</b>
       </aside>
       <div class="journal-found-collage journal-found-home" aria-hidden="true">
-        <span class="found-material found-home-lotus"><img src="/journal-assets/user-moth-botanicals.png" alt=""></span>
-        <span class="found-material found-home-lily"><img src="/journal-assets/user-star-lily.jpg" alt=""></span>
+        <span class="found-material found-home-lotus"><img src="/journal-assets/botanical-lotus-specimen-v2.png" alt=""></span>
+        <span class="found-material found-home-lily"><img src="/journal-assets/botanical-rose-cutout.png" alt=""></span>
         <span class="journal-coordinate">64.9631° N<br>19.0208° W<br>ARCHIVE · 0627</span>
       </div>
       <aside class="journal-index-slip journal-index-slip-home" aria-hidden="true">
@@ -30,9 +30,9 @@
         <span>PRIVATE LETTERS</span><b>FROM LUMIÈRE, WITH CARE</b>
       </aside>
       <div class="journal-found-collage journal-found-chat" aria-hidden="true">
-        <span class="found-material found-chat-lilies"><img src="/journal-assets/user-star-lily.jpg" alt=""></span>
-        <span class="found-material found-chat-butterfly"><img src="/journal-assets/user-butterfly-print.jpg" alt=""></span>
-        <span class="found-material found-chat-lotus"><img src="/journal-assets/user-moth-botanicals.png" alt=""></span>
+        <span class="found-material found-chat-lilies"><img src="/journal-assets/botanical-rose-cutout.png" alt=""></span>
+        <span class="found-material found-chat-butterfly"><img src="/journal-assets/botanical-moth-cutout.png" alt=""></span>
+        <span class="found-material found-chat-lotus"><img src="/journal-assets/botanical-lotus-specimen-v2.png" alt=""></span>
       </div>
     `,
     memory: `
@@ -41,9 +41,9 @@
       </aside>
       <div class="journal-postmark journal-postmark-memory" aria-hidden="true"></div>
       <div class="journal-found-collage journal-found-memory" aria-hidden="true">
-        <span class="found-material found-memory-print"><img src="/journal-assets/user-butterfly-print.jpg" alt=""></span>
-        <span class="found-material found-memory-lace"><img src="/journal-assets/user-lace-frame.jpg" alt=""></span>
-        <span class="found-material found-memory-lotus"><img src="/journal-assets/user-star-lily.jpg" alt=""></span>
+        <span class="found-material found-memory-print"><img src="/journal-assets/botanical-moth-cutout.png" alt=""></span>
+        <span class="found-material found-memory-lace"><img src="/journal-assets/archive-lace-frame.webp" alt=""></span>
+        <span class="found-material found-memory-lotus"><img src="/journal-assets/botanical-rose-cutout.png" alt=""></span>
       </div>
       <aside class="journal-index-slip journal-memory-slip" aria-hidden="true">
         <small>MEMORY FRAGMENT</small>
@@ -56,9 +56,9 @@
         <span>FILM & FRAGMENTS</span><b>PERSONAL COLLECTION</b>
       </aside>
       <div class="journal-found-collage journal-found-moments" aria-hidden="true">
-        <span class="found-material found-moments-moth"><img src="/journal-assets/user-moth-botanicals.png" alt=""></span>
-        <span class="found-material found-moments-ephemera"><img src="/journal-assets/user-ephemera-kit.jpg" alt=""></span>
-        <span class="found-material found-moments-lotus"><img src="/journal-assets/user-star-lily.jpg" alt=""></span>
+        <span class="found-material found-moments-moth"><img src="/journal-assets/botanical-moth-cutout.png" alt=""></span>
+        <span class="found-material found-moments-ephemera"><img src="/journal-assets/archive-botanical.webp" alt=""></span>
+        <span class="found-material found-moments-lotus"><img src="/journal-assets/botanical-lotus-specimen-v2.png" alt=""></span>
       </div>
     `,
     settings: `
@@ -66,9 +66,9 @@
         <span>OWNER'S FILE</span><b>PERSONAL JOURNAL</b>
       </aside>
       <div class="journal-found-collage journal-found-settings" aria-hidden="true">
-        <span class="found-material found-settings-candelabra"><img src="/journal-assets/user-moth-botanicals.png" alt=""></span>
-        <span class="found-material found-settings-lily"><img src="/journal-assets/user-star-lily.jpg" alt=""></span>
-        <span class="found-material found-settings-lace"><img src="/journal-assets/user-lace-frame.jpg" alt=""></span>
+        <span class="found-material found-settings-candelabra"><img src="/journal-assets/botanical-lotus-specimen-v2.png" alt=""></span>
+        <span class="found-material found-settings-lily"><img src="/journal-assets/botanical-rosemary-cutout.png" alt=""></span>
+        <span class="found-material found-settings-lace"><img src="/journal-assets/archive-lace-frame.webp" alt=""></span>
       </div>
     `
   };
@@ -95,7 +95,7 @@
         <input class="journal-photo-input" type="file" accept="image/*" hidden>
         <figcaption>private photograph · tap to replace</figcaption>
       </figure>
-      <span class="journal-pressed-flower" aria-hidden="true"><img src="/journal-assets/user-moth-botanicals.png" alt=""></span>
+      <span class="journal-pressed-flower" aria-hidden="true"><img src="/journal-assets/botanical-rosemary-cutout.png" alt=""></span>
       <span class="journal-collage-stars">✦　·　✧</span>
       <span class="journal-hero-coordinate">64.9631° N<br>19.0208° W<br>ARCHIVE · L/01</span>
       <span class="journal-hero-postmark"></span>

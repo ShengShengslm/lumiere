@@ -1872,7 +1872,7 @@ html .app-shell[data-style="journal"] .page.call-page .call-caption #call-spoken
   );
 }
 .app-shell[data-style="journal"] .hero-card::after{
-  background:url("/journal-assets/cc0-torn-paper-texture.jpg") center/cover;
+  background:url("/journal-assets/paper-grain.svg") center/420px 420px repeat;
   opacity:.055;
   mix-blend-mode:multiply;
 }
@@ -2091,7 +2091,7 @@ html .app-shell[data-style="journal"] .page.call-page .call-caption #call-spoken
   padding:17px;
   color:var(--paper-ink);
   background:#eee1ca;
-  background-image:linear-gradient(rgba(244,236,221,.9),rgba(238,225,201,.9)),url("/journal-assets/cc0-torn-paper-texture.jpg");
+  background-image:linear-gradient(rgba(244,236,221,.9),rgba(238,225,201,.9)),url("/journal-assets/paper-grain.svg");
   background-size:cover;
   box-shadow:9px 15px 32px rgba(46,35,23,.26);
   clip-path:polygon(0 2%,5% 0,10% 3%,16% 0,22% 2%,30% 0,38% 3%,46% 0,55% 2%,64% 0,72% 3%,80% 0,88% 2%,95% 0,100% 3%,99% 97%,93% 100%,86% 97%,79% 100%,70% 97%,62% 100%,53% 97%,45% 100%,37% 97%,29% 100%,21% 97%,13% 100%,6% 97%,0 99%);
@@ -2399,4 +2399,449 @@ html .app-shell[data-style="journal"] .page.call-page .call-caption #call-spoken
   .app-shell[data-style="journal"] .hero-card>.journal-note-content{top:435px;left:37px;width:76%;font-size:16px}
   .app-shell[data-style="journal"] .journal-note-actions{top:575px;right:28px}
   .app-shell[data-style="journal"] .journal-note-editor{top:385px;left:22px;width:84%}
+}
+
+/* v57: editorial archive refinement — stable pages, extracted specimens, real torn contours. */
+.app-shell[data-style="journal"] .found-material{
+  overflow:visible;
+  mix-blend-mode:multiply;
+}
+.app-shell[data-style="journal"] .found-material img{
+  width:100%;
+  height:100%;
+  object-fit:contain;
+  object-position:center;
+  filter:sepia(.16) saturate(.58) contrast(.94);
+}
+
+/* A stable museum page; only the clipped photograph and ephemera may drift. */
+.app-shell[data-style="journal"] .hero-card{
+  min-height:650px;
+  overflow:hidden;
+  border:1px solid rgba(76,64,48,.13);
+  clip-path:none;
+  transform:none;
+  background:#eee5d6;
+  box-shadow:0 11px 27px rgba(57,43,27,.12);
+}
+.app-shell[data-style="journal"] .hero-card::before{
+  border:0;
+  background:
+    linear-gradient(90deg,rgba(74,61,44,.12),rgba(74,61,44,.12)) 20px 72px/116px 1px no-repeat,
+    linear-gradient(90deg,rgba(74,61,44,.08),transparent 72%) 20px calc(100% - 18px)/78% 1px no-repeat;
+  opacity:1;
+}
+.app-shell[data-style="journal"] .hero-card::after{
+  background:url("/journal-assets/paper-grain.svg") center/380px 380px repeat;
+  opacity:.19;
+  mix-blend-mode:multiply;
+}
+.app-shell[data-style="journal"] .journal-hero-label{
+  top:27px;
+  left:22px;
+}
+.app-shell[data-style="journal"] .journal-hero-label span{font-size:11px}
+.app-shell[data-style="journal"] .journal-hero-collage{
+  top:58px;
+  right:4px;
+  width:61%;
+  height:316px;
+  transform:none;
+}
+.app-shell[data-style="journal"] .journal-hero-collage::before{
+  top:26px;
+  right:-21px;
+  width:160px;
+  height:224px;
+  opacity:.085;
+  filter:sepia(.2) saturate(.45);
+}
+.app-shell[data-style="journal"] .journal-polaroid{
+  top:48px;
+  right:2px;
+  width:157px;
+  min-height:218px;
+  padding:9px 9px 23px;
+  transform:rotate(2.6deg);
+  box-shadow:5px 8px 17px rgba(53,41,28,.18);
+}
+.app-shell[data-style="journal"] .journal-polaroid::before{
+  top:-9px;
+  left:47px;
+  width:73px;
+  height:17px;
+  transform:rotate(-4deg);
+  opacity:.72;
+}
+.app-shell[data-style="journal"] .journal-polaroid-photo{
+  width:139px;
+  height:178px;
+  filter:grayscale(.78) sepia(.15) saturate(.72) contrast(1.02);
+}
+.app-shell[data-style="journal"] .journal-polaroid figcaption{
+  margin-top:9px;
+  font-size:5.5px;
+}
+.app-shell[data-style="journal"] .journal-pressed-flower{
+  left:-16px;
+  bottom:2px;
+  width:78px;
+  height:176px;
+  overflow:visible;
+  transform:rotate(-3deg);
+  mix-blend-mode:multiply;
+}
+.app-shell[data-style="journal"] .journal-pressed-flower img{
+  width:100%;
+  height:100%;
+  object-fit:contain;
+  object-position:center;
+  transform:none;
+  opacity:.34;
+  filter:sepia(.2) saturate(.46);
+}
+.app-shell[data-style="journal"] .journal-collage-stars{
+  top:5px;
+  left:3px;
+  transform:rotate(-3deg);
+}
+.app-shell[data-style="journal"] .journal-hero-coordinate{
+  top:7px;
+  right:5px;
+  transform:none;
+}
+.app-shell[data-style="journal"] .journal-hero-postmark{
+  right:78px;
+  bottom:4px;
+  transform:rotate(-4deg);
+}
+.app-shell[data-style="journal"] .hero-card .companions::after{margin-top:4px}
+.app-shell[data-style="journal"] .hero-card .journal-hand-note{
+  top:336px;
+  left:19px;
+  transform:rotate(-3deg);
+  opacity:.7;
+}
+
+/* Only the note is torn. Its edge comes from a photographed CC0 paper contour. */
+.app-shell[data-style="journal"] .journal-note-paper{
+  top:389px;
+  left:8%;
+  width:84%;
+  height:218px;
+  clip-path:none;
+  transform:none;
+  background:
+    repeating-linear-gradient(0deg,transparent 0 30px,rgba(96,72,44,.042) 31px),
+    linear-gradient(rgba(245,237,222,.99),rgba(239,226,205,.985));
+  box-shadow:5px 10px 19px rgba(57,43,27,.15);
+  -webkit-mask-image:url("/journal-assets/torn-mask-note-a.png");
+  -webkit-mask-size:100% 100%;
+  -webkit-mask-position:center;
+  -webkit-mask-repeat:no-repeat;
+  mask-image:url("/journal-assets/torn-mask-note-a.png");
+  mask-size:100% 100%;
+  mask-position:center;
+  mask-repeat:no-repeat;
+}
+.app-shell[data-style="journal"] .journal-note-paper::before{
+  top:-4px;
+  left:38%;
+  width:78px;
+  height:16px;
+  transform:rotate(3deg);
+}
+.app-shell[data-style="journal"] .journal-note-paper::after{
+  right:-6px;
+  bottom:2px;
+  width:64px;
+  height:120px;
+  background-image:url("/journal-assets/botanical-rose-cutout.png");
+  background-size:contain;
+  background-position:right bottom;
+  background-repeat:no-repeat;
+  opacity:.12;
+}
+.app-shell[data-style="journal"] .journal-note-meta{
+  top:414px;
+  left:14%;
+  width:72%;
+}
+.app-shell[data-style="journal"] .hero-card>.journal-paperclip{
+  top:377px;
+  left:15%;
+  transform:rotate(9deg);
+}
+.app-shell[data-style="journal"] .hero-card>.journal-note-content{
+  top:461px;
+  left:15%;
+  width:68%;
+  max-height:94px;
+  color:#494238;
+  font:14px/2.05 "Kaiti SC","STKaiti","KaiTi",serif;
+  letter-spacing:.02em;
+}
+.app-shell[data-style="journal"] .journal-note-actions{
+  top:566px;
+  right:13%;
+  gap:6px;
+}
+.app-shell[data-style="journal"] .journal-note-edit,
+.app-shell[data-style="journal"] .journal-note-ai{
+  min-height:25px;
+  padding:5px 7px;
+  font-size:7px;
+}
+.app-shell[data-style="journal"] .journal-note-edit span,
+.app-shell[data-style="journal"] .journal-note-ai span{font-size:5.5px}
+.app-shell[data-style="journal"] .journal-note-editor{
+  top:407px;
+  left:11%;
+  width:78%;
+  padding:15px;
+  clip-path:none;
+  transform:none;
+  background:#eee1ca;
+  background-image:
+    linear-gradient(rgba(244,236,221,.88),rgba(238,225,201,.9)),
+    url("/journal-assets/paper-grain.svg");
+  box-shadow:8px 14px 27px rgba(46,35,23,.22);
+}
+.app-shell[data-style="journal"] .journal-note-editor textarea{
+  height:118px;
+  min-height:118px;
+  padding:10px 11px;
+  border:1px solid rgba(78,64,47,.28);
+  outline:none;
+  background:rgba(250,244,233,.62);
+  font:14px/1.85 "Kaiti SC","STKaiti","KaiTi",serif;
+}
+.app-shell[data-style="journal"] .journal-note-editor textarea:focus{
+  border-color:rgba(122,62,62,.55);
+  box-shadow:0 0 0 1px rgba(122,62,62,.08);
+}
+
+/* Extracted supplied specimens — no screenshot rectangles. */
+.app-shell[data-style="journal"] .found-home-lotus{
+  top:255px;
+  right:-24px;
+  width:92px;
+  height:228px;
+  transform:rotate(3deg);
+}
+.app-shell[data-style="journal"] .found-home-lotus img{
+  opacity:.13;
+  object-position:center;
+  transform:none;
+}
+.app-shell[data-style="journal"] .found-home-lily{
+  top:742px;
+  left:-8px;
+  width:62px;
+  height:176px;
+  transform:rotate(-3deg);
+}
+.app-shell[data-style="journal"] .found-home-lily img{
+  opacity:.12;
+  object-position:center;
+}
+.app-shell[data-style="journal"] .journal-found-home .journal-coordinate{
+  top:286px;
+  right:9px;
+  transform:none;
+}
+
+.app-shell[data-style="journal"] .found-chat-lilies{
+  right:-16px;
+  bottom:136px;
+  width:74px;
+  height:204px;
+  transform:rotate(3deg);
+}
+.app-shell[data-style="journal"] .found-chat-lilies img{opacity:.11;object-position:center}
+.app-shell[data-style="journal"] .found-chat-butterfly{
+  top:258px;
+  left:-32px;
+  width:116px;
+  height:66px;
+  transform:rotate(-4deg);
+}
+.app-shell[data-style="journal"] .found-chat-butterfly img{opacity:.095;object-position:center}
+.app-shell[data-style="journal"] .found-chat-lotus{
+  left:-25px;
+  bottom:72px;
+  width:66px;
+  height:160px;
+  transform:rotate(-2deg);
+}
+.app-shell[data-style="journal"] .found-chat-lotus img{
+  opacity:.08;
+  object-position:center;
+  transform:none;
+}
+
+.app-shell[data-style="journal"] .found-memory-print{
+  top:318px;
+  right:-26px;
+  width:112px;
+  height:65px;
+  transform:rotate(3deg);
+}
+.app-shell[data-style="journal"] .found-memory-print img{opacity:.12;object-position:center}
+.app-shell[data-style="journal"] .found-memory-lace{
+  top:730px;
+  left:-38px;
+  width:106px;
+  height:176px;
+  transform:rotate(-3deg);
+}
+.app-shell[data-style="journal"] .found-memory-lace img{opacity:.13;object-position:center}
+.app-shell[data-style="journal"] .found-memory-lotus{
+  top:1060px;
+  right:-9px;
+  width:64px;
+  height:172px;
+  transform:rotate(2deg);
+}
+.app-shell[data-style="journal"] .found-memory-lotus img{opacity:.12;object-position:center;transform:none}
+
+.app-shell[data-style="journal"] .found-moments-moth{
+  top:180px;
+  left:-31px;
+  width:115px;
+  height:68px;
+  transform:rotate(-4deg);
+}
+.app-shell[data-style="journal"] .found-moments-moth img{opacity:.13;object-position:center}
+.app-shell[data-style="journal"] .found-moments-ephemera{
+  top:650px;
+  right:-41px;
+  width:116px;
+  height:242px;
+  transform:rotate(3deg);
+}
+.app-shell[data-style="journal"] .found-moments-ephemera img{opacity:.10;object-position:center}
+.app-shell[data-style="journal"] .found-moments-lotus{
+  top:1054px;
+  left:-29px;
+  width:70px;
+  height:184px;
+  transform:rotate(-2deg);
+}
+.app-shell[data-style="journal"] .found-moments-lotus img{opacity:.095;object-position:center;transform:none}
+
+.app-shell[data-style="journal"] .found-settings-candelabra{
+  top:222px;
+  right:-28px;
+  width:80px;
+  height:205px;
+  transform:rotate(3deg);
+}
+.app-shell[data-style="journal"] .found-settings-candelabra img{opacity:.11;object-position:center}
+.app-shell[data-style="journal"] .found-settings-lily{
+  top:790px;
+  left:-18px;
+  width:57px;
+  height:167px;
+  transform:rotate(-3deg);
+}
+.app-shell[data-style="journal"] .found-settings-lily img{opacity:.11;object-position:center}
+.app-shell[data-style="journal"] .found-settings-lace{
+  top:1225px;
+  right:-35px;
+  width:94px;
+  height:166px;
+  transform:rotate(2deg);
+}
+.app-shell[data-style="journal"] .found-settings-lace img{opacity:.12;object-position:center}
+
+/* Main content behaves like an edited catalogue, not a tilted collage wall. */
+.app-shell[data-style="journal"] .mini-card,
+.app-shell[data-style="journal"] .tasks-card,
+.app-shell[data-style="journal"] .message.incoming,
+.app-shell[data-style="journal"] .message.outgoing,
+.app-shell[data-style="journal"] .voice-translation,
+.app-shell[data-style="journal"] .ai-voice-note,
+.app-shell[data-style="journal"] .call-record-card,
+.app-shell[data-style="journal"] .ombre-catalog,
+.app-shell[data-style="journal"] .ob-card,
+.app-shell[data-style="journal"] .moment-composer,
+.app-shell[data-style="journal"] .moments-feed .moment-card,
+.app-shell[data-style="journal"] .page[data-page="memory"] .ob-entry,
+.app-shell[data-style="journal"] .page[data-page="memory"] .calendar-card,
+.app-shell[data-style="journal"] .page[data-page="memory"] .diary-card,
+.app-shell[data-style="journal"] .memory-list .memory-item,
+.app-shell[data-style="journal"] .memory-list .honest-empty,
+.app-shell[data-style="journal"] .page[data-page="settings"] .profile-card,
+.app-shell[data-style="journal"] .page[data-page="settings"] .settings-group{
+  clip-path:none;
+  transform:none;
+}
+.app-shell[data-style="journal"] .moment-composer,
+.app-shell[data-style="journal"] .moments-feed .moment-card,
+.app-shell[data-style="journal"] .page[data-page="settings"] .settings-group{
+  margin-left:0;
+  margin-right:0;
+  width:auto;
+}
+.app-shell[data-style="journal"] .moments-feed .moment-card,
+.app-shell[data-style="journal"] .moments-feed .moment-card:nth-child(even),
+.app-shell[data-style="journal"] .moments-feed .moment-card:nth-child(odd){
+  width:auto;
+  margin-left:0;
+  margin-right:0;
+  transform:none;
+}
+.app-shell[data-style="journal"] .page[data-page="settings"] .settings-group:nth-of-type(even),
+.app-shell[data-style="journal"] .page[data-page="settings"] .settings-group:nth-of-type(odd){
+  margin-left:0;
+  margin-right:0;
+  transform:none;
+}
+.app-shell[data-style="journal"] .message-row:nth-child(3n+1) .message,
+.app-shell[data-style="journal"] .message-row:nth-child(3n+2) .message{transform:none}
+.app-shell[data-style="journal"] .chat-avatar,
+.app-shell[data-style="journal"] .outgoing-row .chat-avatar{
+  transform:rotate(-1.5deg)!important;
+}
+.app-shell[data-style="journal"] .outgoing-row .chat-avatar{transform:rotate(1.5deg)!important}
+.app-shell[data-style="journal"] .profile-card .avatar{transform:rotate(-2deg)}
+.app-shell[data-style="journal"] .moment-composer{
+  padding:31px 17px 18px;
+  background:#e9dcc6;
+}
+.app-shell[data-style="journal"] .memory-list .memory-item:nth-child(3n+1){
+  -webkit-mask-image:url("/journal-assets/torn-mask-fragment.png");
+  -webkit-mask-size:100% 100%;
+  -webkit-mask-repeat:no-repeat;
+  mask-image:url("/journal-assets/torn-mask-fragment.png");
+  mask-size:100% 100%;
+  mask-repeat:no-repeat;
+}
+.app-shell[data-style="journal"] .page[data-page="settings"] .settings-group::after{
+  left:-8px;
+  width:18px;
+  background-image:url("/journal-assets/archive-lace-frame.webp");
+  background-size:95px 160px;
+  opacity:.10;
+}
+
+@media(max-width:370px){
+  .app-shell[data-style="journal"] .hero-card{min-height:632px}
+  .app-shell[data-style="journal"] .journal-hero-collage{
+    right:-5px;
+    transform:scale(.92);
+    transform-origin:top right;
+  }
+  .app-shell[data-style="journal"] .journal-note-paper{top:377px;height:208px}
+  .app-shell[data-style="journal"] .journal-note-meta{top:401px}
+  .app-shell[data-style="journal"] .hero-card>.journal-paperclip{top:365px}
+  .app-shell[data-style="journal"] .hero-card>.journal-note-content{
+    top:445px;
+    left:14%;
+    width:70%;
+    font-size:13px;
+  }
+  .app-shell[data-style="journal"] .journal-note-actions{top:547px;right:11%}
+  .app-shell[data-style="journal"] .journal-note-editor{top:395px;left:10%;width:80%}
 }
