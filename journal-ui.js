@@ -90,8 +90,30 @@
     <div class="journal-note-meta" aria-hidden="true">
       <span>TODAY'S NOTE</span><time>${noteDate}</time>
     </div>
+    <button type="button" class="journal-note-edit" aria-label="编辑主页文案">✎ <span>EDIT NOTE</span></button>
     <span class="journal-hand-note" aria-hidden="true">saved by Lumière.</span>
   `);
+
+  const editNote = hero?.querySelector(".journal-note-edit");
+  const heroTitle = document.querySelector("#hero-title");
+  const heroSubtitle = document.querySelector("#hero-subtitle");
+  const openHeroEditor = (target = heroTitle) => {
+    target?.dispatchEvent(new MouseEvent("dblclick", { bubbles: true }));
+  };
+  editNote?.addEventListener("click", () => openHeroEditor());
+  [heroTitle, heroSubtitle].forEach((target) => {
+    let lastTouch = 0;
+    target?.addEventListener("touchend", (event) => {
+      const now = Date.now();
+      if (now - lastTouch < 380) {
+        event.preventDefault();
+        openHeroEditor(target);
+        lastTouch = 0;
+        return;
+      }
+      lastTouch = now;
+    }, { passive: false });
+  });
 
   document.querySelector(".drives-card")?.insertAdjacentHTML("afterbegin", `
     <div class="journal-mood-specimen" aria-hidden="true">

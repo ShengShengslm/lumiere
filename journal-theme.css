@@ -17,7 +17,8 @@
 .journal-hero-collage,
 .journal-note-paper,
 .journal-note-meta,
-.journal-mood-specimen{display:none}
+.journal-mood-specimen,
+.journal-note-edit{display:none}
 
 .style-control{display:flex;align-items:center;justify-content:space-between;padding:12px 2px;border-bottom:1px solid rgba(130,155,173,.15)}
 .style-control>span{display:flex;flex-direction:column}
@@ -1507,4 +1508,256 @@ html .app-shell[data-style="journal"] .page.call-page .call-caption #call-spoken
   .app-shell[data-style="journal"] .hero-card .journal-hand-note{top:344px}
   .app-shell[data-style="journal"] .card-grid .mini-card:first-child{flex-basis:76%}
   .app-shell[data-style="journal"] .card-grid .mini-card:last-child{flex-basis:40%;margin-left:-14%}
+}
+
+/* v55: real iPhone safe-area and control corrections. */
+.app-shell[data-style="journal"] .page{
+  padding-top:max(47px,calc(env(safe-area-inset-top,0px) + 16px));
+}
+.app-shell[data-style="journal"] .page[data-page="chat"]{
+  box-sizing:border-box;
+  width:100%;
+  padding-top:max(25px,calc(env(safe-area-inset-top,0px) + 8px));
+}
+.app-shell[data-style="journal"].has-lumi-avatar .journal-polaroid-photo{
+  color:transparent!important;
+  text-shadow:none!important;
+}
+.app-shell[data-style="journal"] .journal-note-edit{
+  display:flex;
+  position:absolute;
+  z-index:6;
+  top:427px;
+  right:33px;
+  align-items:center;
+  gap:5px;
+  padding:5px 7px;
+  border:1px solid var(--paper-line);
+  border-radius:0;
+  color:var(--archive-red);
+  background:rgba(244,237,224,.72);
+  font:10px/1 Georgia,serif;
+  transform:rotate(1.5deg);
+}
+.app-shell[data-style="journal"] .journal-note-edit span{
+  font-size:5px;
+  letter-spacing:.15em;
+}
+.app-shell[data-style="journal"] .hero-card:has(.hero-copy-editor:not([hidden])) .journal-note-edit{display:none}
+.app-shell[data-style="journal"]:has(.hero-copy-editor:not([hidden])) .bottom-nav{
+  opacity:0;
+  visibility:hidden;
+  pointer-events:none;
+}
+.app-shell[data-style="journal"] .hero-copy-editor{
+  box-sizing:border-box;
+  top:461px;
+  max-height:185px;
+  overflow:auto;
+}
+.app-shell[data-style="journal"] .hero-copy-editor input,
+.app-shell[data-style="journal"] .hero-copy-editor textarea{
+  box-sizing:border-box;
+  border:1px solid var(--paper-line);
+  border-radius:0;
+  color:var(--paper-ink);
+  background:#f8f1e5;
+  font-family:"Kaiti SC","STKaiti","KaiTi",serif;
+}
+.app-shell[data-style="journal"] .hero-copy-editor>div button{
+  border:1px solid var(--paper-line);
+  border-radius:0;
+  color:var(--paper-ink);
+  background:var(--paper-soft);
+}
+.app-shell[data-style="journal"] .hero-copy-editor>div button[type="submit"]{
+  color:var(--paper-card);
+  background:var(--archive-red);
+}
+
+/* All journal toggles keep one measured archive-switch geometry. */
+.app-shell[data-style="journal"] input.switch{
+  box-sizing:border-box;
+  flex:0 0 40px;
+  width:40px!important;
+  min-width:40px;
+  height:22px!important;
+  margin:0!important;
+  padding:0!important;
+  border:1px solid rgba(65,59,50,.24);
+  border-radius:1px;
+  appearance:none;
+  -webkit-appearance:none;
+  background:#cfc2ac;
+  transform:none!important;
+  vertical-align:middle;
+}
+.app-shell[data-style="journal"] input.switch::after{
+  top:3px;
+  left:3px;
+  width:14px;
+  height:14px;
+  border-radius:0;
+  background:#f6efe2;
+  box-shadow:1px 2px 4px rgba(59,50,39,.18);
+}
+.app-shell[data-style="journal"] input.switch:checked{background:var(--archive-green)}
+.app-shell[data-style="journal"] input.switch:checked::after{left:21px}
+.app-shell[data-style="journal"] .setting-row input.switch,
+.app-shell[data-style="journal"] .style-control input.switch{margin-left:auto!important}
+.app-shell[data-style="journal"] .style-control,
+.app-shell[data-style="journal"] .night-control,
+.app-shell[data-style="journal"] .temporary-chat{gap:12px}
+.app-shell[data-style="journal"] .top-thinking-control{
+  box-sizing:border-box;
+  width:40px;
+  height:36px;
+  justify-self:end;
+}
+.app-shell[data-style="journal"] .top-thinking-control>span{
+  box-sizing:border-box;
+  width:32px;
+  height:18px;
+  border-radius:1px;
+}
+.app-shell[data-style="journal"] .top-thinking-control>span>i{
+  top:2px;
+  left:2px;
+  width:12px;
+  height:12px;
+}
+.app-shell[data-style="journal"] .top-thinking-control input:checked+span>i{left:16px}
+
+/* Keep the letter header compact and the star sheet continuous behind the composer. */
+.app-shell[data-style="journal"] .journal-letterhead{
+  min-height:17px;
+  margin:0 4px 2px;
+  padding:2px 4px 5px;
+}
+.app-shell[data-style="journal"] .chat-topbar{
+  min-height:65px;
+  padding:2px 0 7px;
+}
+.app-shell[data-style="journal"] .journal-star-field{
+  inset:88px 0 0;
+  background-color:transparent;
+}
+.app-shell[data-style="journal"] .conversation{
+  background:transparent;
+  padding-bottom:132px!important;
+}
+.app-shell[data-style="journal"] .scroll-to-bottom{
+  right:17px;
+  bottom:calc(120px + env(safe-area-inset-bottom,0px));
+  width:45px;
+  height:45px;
+  border:1px solid rgba(62,56,47,.25);
+  border-radius:0;
+  color:var(--archive-red);
+  background:#ded1bb;
+  background-image:url("/journal-assets/paper-grain.svg");
+  box-shadow:3px 5px 11px rgba(55,46,34,.16);
+  backdrop-filter:none;
+  -webkit-backdrop-filter:none;
+  clip-path:polygon(50% 0,100% 18%,94% 82%,50% 100%,6% 82%,0 18%);
+  font:20px/1 Georgia,serif;
+}
+.app-shell[data-style="journal"] .scroll-to-bottom::before{
+  content:"LATEST";
+  position:absolute;
+  top:7px;
+  left:0;
+  right:0;
+  color:var(--paper-muted);
+  font:4px/1 Georgia,serif;
+  letter-spacing:.12em;
+  text-align:center;
+}
+
+/* Composer is a straight writing sheet, with controls sharing one baseline. */
+.app-shell[data-style="journal"] .page[data-page="chat"] .composer{
+  position:absolute!important;
+  box-sizing:border-box;
+  left:12px!important;
+  right:12px!important;
+  bottom:max(9px,env(safe-area-inset-bottom,0px))!important;
+  width:auto!important;
+  height:104px;
+  margin:0;
+  padding:10px 11px 9px;
+  border-radius:1px;
+  transform:none!important;
+}
+.app-shell[data-style="journal"] .composer-text-row{
+  box-sizing:border-box;
+  min-height:39px;
+  border-bottom:1px solid rgba(62,56,47,.12);
+}
+.app-shell[data-style="journal"] .composer-text-row #chat-input{
+  box-sizing:border-box;
+  width:100%;
+  height:38px;
+  padding:3px 7px 5px;
+  color:var(--paper-ink);
+  font-size:15px;
+  line-height:30px;
+  transform:none!important;
+}
+.app-shell[data-style="journal"] .composer-toolbar{
+  box-sizing:border-box;
+  height:42px;
+  align-items:center;
+}
+.app-shell[data-style="journal"] .composer-toolbar-left,
+.app-shell[data-style="journal"] .composer-toolbar-right{
+  height:40px;
+  align-items:center;
+}
+.app-shell[data-style="journal"] .composer .attachment-trigger,
+.app-shell[data-style="journal"] .composer .call-launch,
+.app-shell[data-style="journal"] .composer .voice-button,
+.app-shell[data-style="journal"] .composer .send{
+  box-sizing:border-box;
+  flex:0 0 38px;
+  width:38px!important;
+  height:38px!important;
+  margin:0!important;
+  padding:0;
+  place-items:center;
+  align-items:center;
+  justify-content:center;
+  transform:none!important;
+}
+.app-shell[data-style="journal"] .composer .composer-model-select{
+  box-sizing:border-box;
+  width:min(126px,31vw);
+  height:38px;
+  margin:0;
+  border-radius:1px;
+  transform:none!important;
+}
+.app-shell[data-style="journal"] .composer .composer-model-select select{
+  box-sizing:border-box;
+  height:36px;
+  padding:0 22px 0 10px;
+  color:var(--paper-ink);
+  font:12px/36px "Songti SC","STSong",Georgia,serif!important;
+  transform:none!important;
+}
+.app-shell[data-style="journal"] .composer .composer-model-select svg{right:8px}
+.app-shell[data-style="journal"] .composer .send{border-radius:50%;line-height:38px}
+.app-shell[data-style="journal"] .page[data-page="chat"] .attachment-sheet{
+  position:absolute!important;
+  left:12px!important;
+  right:12px!important;
+  bottom:calc(122px + env(safe-area-inset-bottom,0px))!important;
+}
+.app-shell[data-style="journal"] .page[data-page="chat"] .scroll-to-bottom{position:absolute!important}
+
+@media(max-width:370px){
+  .app-shell[data-style="journal"] .journal-note-edit{top:403px;right:27px}
+  .app-shell[data-style="journal"] .hero-copy-editor{top:437px}
+  .app-shell[data-style="journal"] .composer .composer-model-select{width:min(104px,29vw)}
+  .app-shell[data-style="journal"] .composer-toolbar-left,
+  .app-shell[data-style="journal"] .composer-toolbar-right{gap:5px}
 }
