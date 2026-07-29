@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="210" height="150" viewBox="0 0 210 150" fill="none">
+  <g stroke="#4a4a42" opacity=".82">
+    <circle cx="69" cy="75" r="51" stroke-width="2"/>
+    <circle cx="69" cy="75" r="43" stroke-width="1"/>
+    <path d="M117 52h86M117 66h80M117 80h86M117 94h72" stroke-width="2"/>
+    <path d="M48 57c13-7 30-7 43 0M48 95c13 7 30 7 43 0" stroke-width="1.2"/>
+  </g>
+  <g fill="#4a4a42" font-family="Georgia,serif" text-anchor="middle">
+    <text x="69" y="45" font-size="8" letter-spacing="2">LUMIÈRE</text>
+    <text x="69" y="80" font-size="19">06 · 27</text>
+    <text x="69" y="91" font-size="6" letter-spacing="1.6">PRIVATE ARCHIVE</text>
+  </g>
+</svg>
