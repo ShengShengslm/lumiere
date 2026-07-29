@@ -8,7 +8,11 @@
 .journal-hero-label,
 .journal-paperclip,
 .journal-card-caption,
-.journal-profile-stamp{display:none}
+.journal-profile-stamp,
+.journal-collage-piece,
+.journal-lace-artifact,
+.journal-index-slip,
+.journal-hand-note{display:none}
 
 .style-control{display:flex;align-items:center;justify-content:space-between;padding:12px 2px;border-bottom:1px solid rgba(130,155,173,.15)}
 .style-control>span{display:flex;flex-direction:column}
@@ -17,10 +21,10 @@
 .style-control .switch{transform:scale(.86);transform-origin:right}
 
 .app-shell[data-style="journal"]{
-  --paper:#f5f1e8;
-  --paper-soft:#eee7d9;
-  --paper-deep:#ded2bd;
-  --paper-card:#f8f4eb;
+  --paper:#eee5d4;
+  --paper-soft:#e7dcc8;
+  --paper-deep:#d4c4aa;
+  --paper-card:#f5eddf;
   --paper-ink:#292925;
   --paper-muted:#777268;
   --paper-line:rgba(52,50,43,.2);
@@ -43,10 +47,12 @@
   font-family:"Songti SC","STSong","Noto Serif SC",Georgia,serif;
   background-color:var(--paper);
   background-image:
-    linear-gradient(rgba(245,241,232,.91),rgba(245,241,232,.91)),
+    radial-gradient(circle at 18% 9%,rgba(255,251,238,.58),transparent 29%),
+    radial-gradient(circle at 82% 66%,rgba(128,101,62,.1),transparent 36%),
+    linear-gradient(rgba(238,229,212,.78),rgba(238,229,212,.78)),
     url("/journal-assets/paper-grain.svg"),
     var(--user-background);
-  background-size:auto,256px 256px,cover;
+  background-size:auto,auto,auto,220px 220px,cover;
   background-position:center;
 }
 .app-shell[data-style="journal"][data-theme="sintra"]{--archive-accent:#7b4a46;--archive-accent-soft:#d8c1b3;--archive-red:#7d393b;--archive-green:#52635a}
@@ -56,11 +62,12 @@
 
 .app-shell[data-style="journal"]::before{
   z-index:0;
-  opacity:.32;
+  opacity:.52;
   background-image:
     linear-gradient(90deg,transparent 49.7%,rgba(71,64,53,.045) 50%,transparent 50.3%),
-    radial-gradient(circle,rgba(47,45,40,.2) .55px,transparent .8px);
-  background-size:100% 100%,8px 8px;
+    repeating-linear-gradient(7deg,transparent 0 13px,rgba(81,67,47,.024) 14px),
+    radial-gradient(circle,rgba(47,45,40,.22) .55px,transparent .8px);
+  background-size:100% 100%,100% 100%,7px 7px;
   mix-blend-mode:multiply;
 }
 .app-shell[data-style="journal"]::after{
@@ -118,10 +125,11 @@
 .app-shell[data-style="journal"] .page-header h1{
   margin:0;
   color:var(--paper-ink);
-  font-size:40px;
+  font-size:37px;
   font-weight:400;
   line-height:.95;
-  letter-spacing:-.045em;
+  letter-spacing:.015em;
+  text-transform:uppercase;
 }
 .app-shell[data-style="journal"] .page-header h1::first-letter{font-size:1.25em;font-style:italic}
 .app-shell[data-style="journal"] .eyebrow,
@@ -533,6 +541,313 @@ html .app-shell[data-style="journal"] .page.call-page .call-caption #call-spoken
 .app-shell[data-style="journal"][data-mode="dark"] .setting-icon{background:var(--paper-deep);color:var(--paper-ink)}
 .app-shell[data-style="journal"][data-mode="dark"] .journal-botanical{filter:invert(1);opacity:.11}
 
+/* v53: turn the journal into a layered memory museum instead of a themed app. */
+.app-shell[data-style="journal"] .journal-collage-piece,
+.app-shell[data-style="journal"] .journal-lace-artifact,
+.app-shell[data-style="journal"] .journal-index-slip{
+  display:block;
+  position:absolute;
+  pointer-events:none;
+  user-select:none;
+}
+.app-shell[data-style="journal"] .journal-collage-piece img,
+.app-shell[data-style="journal"] .journal-lace-artifact img{
+  display:block;
+  width:100%;
+  height:auto;
+}
+.app-shell[data-style="journal"] .journal-collage-piece{
+  z-index:1;
+  filter:sepia(.14) saturate(.68) contrast(.94);
+  mix-blend-mode:multiply;
+}
+.app-shell[data-style="journal"] .journal-collage-home{
+  top:207px;
+  right:-89px;
+  width:238px;
+  opacity:.46;
+  transform:rotate(6deg);
+}
+.app-shell[data-style="journal"] .journal-collage-moments{
+  top:275px;
+  left:-115px;
+  width:220px;
+  opacity:.24;
+  transform:rotate(-13deg);
+}
+.app-shell[data-style="journal"] .journal-collage-settings{
+  top:146px;
+  right:-103px;
+  width:210px;
+  opacity:.3;
+  transform:rotate(8deg);
+}
+.app-shell[data-style="journal"] .journal-coordinate{
+  display:block;
+  position:absolute;
+  right:34px;
+  top:34%;
+  padding-left:8px;
+  border-left:1px solid rgba(45,43,38,.35);
+  color:rgba(45,43,38,.58);
+  font:6px/1.65 Georgia,serif;
+  letter-spacing:.1em;
+  transform:rotate(-7deg);
+}
+.app-shell[data-style="journal"] .journal-index-slip{
+  z-index:3;
+  display:flex;
+  flex-direction:column;
+  gap:5px;
+  padding:13px 12px 11px;
+  color:var(--paper-ink);
+  background:#dfd3bd;
+  background-image:url("/journal-assets/paper-grain.svg");
+  box-shadow:2px 5px 11px rgba(53,43,31,.12);
+  clip-path:polygon(0 2%,11% 0,23% 2%,38% .4%,51% 1.8%,66% 0,81% 2%,100% 0,99% 98%,84% 100%,69% 98.3%,53% 100%,37% 98%,20% 100%,0 98%);
+}
+.app-shell[data-style="journal"] .journal-index-slip::before{
+  content:"";
+  position:absolute;
+  width:44px;
+  height:12px;
+  top:-5px;
+  left:10px;
+  background:rgba(161,139,104,.36);
+  transform:rotate(-5deg);
+}
+.app-shell[data-style="journal"] .journal-index-slip small{color:var(--archive-red);font:6px/1 Georgia,serif;letter-spacing:.2em}
+.app-shell[data-style="journal"] .journal-index-slip b{font:italic 11px/1.45 Georgia,serif;font-weight:400}
+.app-shell[data-style="journal"] .journal-index-slip span{color:var(--paper-muted);font:5px/1.3 Georgia,serif;letter-spacing:.13em}
+.app-shell[data-style="journal"] .journal-index-slip-home{
+  display:none;
+}
+.app-shell[data-style="journal"] .journal-memory-slip{
+  z-index:4;
+  top:296px;
+  right:6px;
+  width:142px;
+  background:#ded2bd;
+  transform:rotate(3deg);
+}
+.app-shell[data-style="journal"] .journal-lace-memory{
+  z-index:1;
+  top:464px;
+  right:-61px;
+  width:270px;
+  opacity:.34;
+  transform:rotate(5deg);
+  filter:sepia(.24) saturate(.62);
+}
+.app-shell[data-style="journal"] .journal-hand-note{
+  display:block;
+  position:absolute;
+  z-index:2;
+  right:15px;
+  bottom:54px;
+  color:rgba(68,58,46,.52);
+  font:italic 10px/1 "Kaiti SC","STKaiti","KaiTi",serif;
+  transform:rotate(-9deg);
+}
+
+.app-shell[data-style="journal"] .page[data-page="home"]>.page-header,
+.app-shell[data-style="journal"] .page[data-page="home"]>.hero-card,
+.app-shell[data-style="journal"] .page[data-page="home"]>.card-grid,
+.app-shell[data-style="journal"] .page[data-page="home"]>.tasks-card,
+.app-shell[data-style="journal"] .page[data-page="memory"]>.page-header,
+.app-shell[data-style="journal"] .page[data-page="memory"]>.ob-entry,
+.app-shell[data-style="journal"] .page[data-page="memory"]>.calendar-card,
+.app-shell[data-style="journal"] .page[data-page="memory"]>.diary-card,
+.app-shell[data-style="journal"] .page[data-page="memory"]>.memory-list,
+.app-shell[data-style="journal"] .page[data-page="moments"]>.page-header,
+.app-shell[data-style="journal"] .page[data-page="moments"]>.moments-module,
+.app-shell[data-style="journal"] .page[data-page="settings"]>.page-header,
+.app-shell[data-style="journal"] .page[data-page="settings"]>.profile-card,
+.app-shell[data-style="journal"] .page[data-page="settings"]>.settings-group{
+  position:relative;
+  z-index:2;
+}
+
+.app-shell[data-style="journal"] .hero-card{
+  width:88%;
+  min-height:352px;
+  margin-left:0;
+  padding-top:77px;
+  transform:rotate(-1.15deg);
+  box-shadow:5px 8px 18px rgba(62,48,31,.13);
+}
+.app-shell[data-style="journal"] .hero-card .companions{
+  width:92%;
+  margin-left:-9px;
+  transform:rotate(.8deg);
+}
+.app-shell[data-style="journal"] .hero-card .avatar{
+  position:relative;
+  width:64px;
+  height:72px;
+  padding-bottom:10px;
+  border-width:6px 6px 14px;
+  clip-path:polygon(0 1%,100% 0,99% 100%,1% 99%);
+}
+.app-shell[data-style="journal"] .hero-card h2{max-width:215px;font-size:23px}
+.app-shell[data-style="journal"] .hero-card p{max-width:210px}
+.app-shell[data-style="journal"] .card-grid{
+  display:flex;
+  align-items:flex-start;
+  gap:0;
+  min-height:205px;
+  margin:-5px -2px 21px 3px;
+}
+.app-shell[data-style="journal"] .card-grid .mini-card:first-child{
+  z-index:2;
+  flex:0 0 64%;
+  min-height:185px;
+  transform:rotate(1.7deg);
+}
+.app-shell[data-style="journal"] .card-grid .mini-card:last-child{
+  z-index:1;
+  flex:0 0 47%;
+  min-height:161px;
+  margin-top:38px;
+  margin-left:-12%;
+  padding-left:27px;
+  transform:rotate(-2.5deg);
+  background:#d8cbb5;
+}
+.app-shell[data-style="journal"] .tasks-card{
+  width:93%;
+  margin-left:5%;
+  transform:rotate(.55deg);
+  box-shadow:5px 8px 16px rgba(62,48,31,.12);
+}
+.app-shell[data-style="journal"] .tasks-card::after{
+  content:"";
+  position:absolute;
+  z-index:-1;
+  right:-35px;
+  bottom:-18px;
+  width:128px;
+  height:190px;
+  background:url("/journal-assets/archive-lace-frame.webp") center/contain no-repeat;
+  opacity:.17;
+  transform:rotate(13deg);
+}
+
+.app-shell[data-style="journal"] .page[data-page="memory"] .page-header{
+  width:82%;
+  margin-bottom:31px;
+}
+.app-shell[data-style="journal"] .page[data-page="memory"] .ob-entry{
+  width:88%;
+  margin-left:0;
+  transform:rotate(-1.2deg);
+  box-shadow:4px 7px 14px rgba(60,47,31,.12);
+}
+.app-shell[data-style="journal"] .page[data-page="memory"] .calendar-card{
+  width:94%;
+  margin:12px 0 15px 5%;
+  transform:rotate(.7deg);
+  box-shadow:5px 8px 17px rgba(60,47,31,.12);
+}
+.app-shell[data-style="journal"] .page[data-page="memory"] .diary-card{
+  width:79%;
+  margin:0 1% 17px auto;
+  transform:rotate(-1.45deg);
+  background-color:#dcd0bc;
+}
+.app-shell[data-style="journal"] .memory-list .memory-item,
+.app-shell[data-style="journal"] .memory-list .honest-empty{
+  position:relative;
+  width:91%;
+  margin-left:1%;
+  padding-top:34px;
+  transform:rotate(-.55deg);
+}
+.app-shell[data-style="journal"] .memory-list .memory-item:nth-child(even){margin-left:auto;transform:rotate(.8deg)}
+.app-shell[data-style="journal"] .memory-list .memory-item::before,
+.app-shell[data-style="journal"] .memory-list .honest-empty::before{
+  content:"MEMORY FRAGMENT";
+  position:absolute;
+  top:13px;
+  left:17px;
+  color:var(--archive-red);
+  font:6px/1 Georgia,serif;
+  letter-spacing:.2em;
+}
+.app-shell[data-style="journal"] .memory-list .memory-item::after{
+  content:"SAVED BY LUMIÈRE";
+  position:absolute;
+  right:13px;
+  bottom:8px;
+  color:var(--paper-muted);
+  font:5px/1 Georgia,serif;
+  letter-spacing:.14em;
+}
+
+.app-shell[data-style="journal"] .moments-module{padding-bottom:30px}
+.app-shell[data-style="journal"] .moment-composer{
+  width:91%;
+  margin-left:7%;
+  transform:rotate(1deg);
+}
+.app-shell[data-style="journal"] .moments-feed .moment-card{
+  width:92%;
+  margin-bottom:19px;
+}
+.app-shell[data-style="journal"] .moments-feed .moment-card:nth-child(even){margin-left:auto;transform:rotate(1.1deg)}
+.app-shell[data-style="journal"] .moments-feed .moment-card:nth-child(odd){margin-left:0;transform:rotate(-1deg)}
+
+.app-shell[data-style="journal"] .page[data-page="settings"] .profile-card{
+  width:88%;
+  min-height:116px;
+  margin-left:1%;
+  transform:rotate(-1.2deg);
+}
+.app-shell[data-style="journal"] .page[data-page="settings"] .settings-group{
+  width:94%;
+  margin-left:4%;
+  clip-path:polygon(0 1%,8% 0,19% .8%,31% 0,45% .7%,58% 0,71% .8%,84% 0,100% 1%,99% 99%,86% 98%,73% 100%,59% 98.7%,44% 100%,29% 98.6%,15% 100%,0 99%);
+  transform:rotate(.35deg);
+}
+.app-shell[data-style="journal"] .page[data-page="settings"] .settings-group:nth-of-type(even){
+  margin-left:0;
+  transform:rotate(-.45deg);
+}
+.app-shell[data-style="journal"] .chat-topbar::after{
+  content:"";
+  position:absolute;
+  left:-8px;
+  right:-8px;
+  bottom:-17px;
+  height:19px;
+  background:url("/journal-assets/lace-edge.svg") repeat-x center/105px 20px;
+  opacity:.22;
+  pointer-events:none;
+}
+.app-shell[data-style="journal"] .page.call-page::after{
+  content:"";
+  position:absolute;
+  z-index:0;
+  right:-86px;
+  bottom:50px;
+  width:230px;
+  height:480px;
+  background:url("/journal-assets/archive-botanical.webp") center/contain no-repeat;
+  opacity:.055;
+  filter:grayscale(1) invert(1);
+  transform:rotate(8deg);
+  pointer-events:none;
+}
+.app-shell[data-style="journal"] .page.call-page>*{position:relative;z-index:1}
+
+.app-shell[data-style="journal"][data-mode="dark"] .journal-collage-piece{
+  filter:grayscale(1) invert(.86) contrast(.9);
+  mix-blend-mode:screen;
+  opacity:.13;
+}
+.app-shell[data-style="journal"][data-mode="dark"] .journal-index-slip{background:#413b32}
+.app-shell[data-style="journal"][data-mode="dark"] .journal-lace-artifact{filter:grayscale(1);opacity:.12}
+
 @media(max-width:370px){
   .app-shell[data-style="journal"] .page{padding-left:15px;padding-right:15px}
   .app-shell[data-style="journal"] .page-header h1{font-size:36px}
@@ -541,6 +856,8 @@ html .app-shell[data-style="journal"] .page.call-page .call-caption #call-spoken
   .app-shell[data-style="journal"] .journal-hero-label small{display:none}
   .app-shell[data-style="journal"] .card-grid{gap:9px}
   .app-shell[data-style="journal"] .mini-card{padding:17px 13px}
+  .app-shell[data-style="journal"] .journal-collage-home{right:-105px}
+  .app-shell[data-style="journal"] .journal-index-slip-home{left:5px}
 }
 @media(prefers-reduced-motion:reduce){
   .app-shell[data-style="journal"] .page.active{animation:none}
