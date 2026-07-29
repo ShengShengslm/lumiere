@@ -28,6 +28,7 @@
       <aside class="journal-letterhead" aria-hidden="true">
         <span>PRIVATE LETTERS</span><b>FROM LUMIÈRE, WITH CARE</b>
       </aside>
+      <div class="journal-star-field" aria-hidden="true"></div>
     `,
     memory: `
       <aside class="journal-page-folio" aria-hidden="true">
@@ -66,17 +67,41 @@
   });
 
   const hero = document.querySelector(".hero-card");
+  const noteDate = new Intl.DateTimeFormat("en-US", {
+    month: "short",
+    day: "2-digit"
+  }).format(new Date()).replace(" ", ". ").toUpperCase();
   hero?.insertAdjacentHTML("afterbegin", `
     <div class="journal-hero-label" aria-hidden="true">
-      <span>TOGETHER SINCE</span><small>every day with you</small>
+      <span>TOGETHER SINCE</span><small>PRIVATE LOVE ARCHIVE · 01</small>
     </div>
     <span class="journal-paperclip" aria-hidden="true"></span>
-    <span class="journal-hand-note" aria-hidden="true">a life, kept softly.</span>
+    <div class="journal-hero-collage" aria-hidden="true">
+      <figure class="journal-polaroid">
+        <span class="journal-polaroid-photo avatar-preview-lumi">L</span>
+        <figcaption>photograph no. 01</figcaption>
+      </figure>
+      <span class="journal-specimen"></span>
+      <span class="journal-collage-stars">✦　·　✧</span>
+      <span class="journal-hero-coordinate">64.9631° N<br>19.0208° W<br>ARCHIVE · L/01</span>
+      <span class="journal-hero-postmark"></span>
+    </div>
+    <div class="journal-note-paper" aria-hidden="true"></div>
+    <div class="journal-note-meta" aria-hidden="true">
+      <span>TODAY'S NOTE</span><time>${noteDate}</time>
+    </div>
+    <span class="journal-hand-note" aria-hidden="true">saved by Lumière.</span>
+  `);
+
+  document.querySelector(".drives-card")?.insertAdjacentHTML("afterbegin", `
+    <div class="journal-mood-specimen" aria-hidden="true">
+      <span>INNER WEATHER</span><i></i><b>情绪标本 · 01</b>
+    </div>
   `);
 
   document.querySelector(".tasks-card")?.insertAdjacentHTML("afterbegin", `
     <div class="journal-card-caption" aria-hidden="true">
-      <span>TODAY'S NOTE</span><b>things worth remembering</b>
+      <span>DAILY INDEX</span><b>things worth returning to</b>
     </div>
   `);
 

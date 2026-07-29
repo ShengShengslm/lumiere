@@ -12,7 +12,12 @@
 .journal-collage-piece,
 .journal-lace-artifact,
 .journal-index-slip,
-.journal-hand-note{display:none}
+.journal-hand-note,
+.journal-star-field,
+.journal-hero-collage,
+.journal-note-paper,
+.journal-note-meta,
+.journal-mood-specimen{display:none}
 
 .style-control{display:flex;align-items:center;justify-content:space-between;padding:12px 2px;border-bottom:1px solid rgba(130,155,173,.15)}
 .style-control>span{display:flex;flex-direction:column}
@@ -865,4 +870,641 @@ html .app-shell[data-style="journal"] .page.call-page .call-caption #call-spoken
   .app-shell[data-style="journal"] .hero-card,
   .app-shell[data-style="journal"] .moment-card,
   .app-shell[data-style="journal"] .profile-card{transform:none}
+}
+
+/* v54: Together Since becomes a collected love archive, not a relationship card. */
+.app-shell[data-style="journal"]::before{opacity:.24}
+.app-shell[data-style="journal"] .page[data-page="home"]>.page-header{
+  width:74%;
+  min-height:83px;
+  margin-bottom:7px;
+  border-bottom:0;
+}
+.app-shell[data-style="journal"] .page[data-page="home"]>.page-header .subtle{max-width:220px}
+.app-shell[data-style="journal"] .journal-collage-home{display:none}
+.app-shell[data-style="journal"] .hero-card{
+  width:100%;
+  min-height:670px;
+  margin:0 0 19px;
+  padding:0;
+  overflow:visible;
+  border:0;
+  clip-path:none;
+  transform:none;
+  background:transparent;
+  background-image:none;
+  box-shadow:none;
+}
+.app-shell[data-style="journal"] .hero-card::before,
+.app-shell[data-style="journal"] .hero-card::after{display:none}
+.app-shell[data-style="journal"] .journal-hero-label{
+  top:17px;
+  left:3px;
+  right:auto;
+  width:176px;
+  padding-bottom:8px;
+  align-items:flex-start;
+  flex-direction:column;
+  gap:7px;
+  border-bottom:0;
+}
+.app-shell[data-style="journal"] .journal-hero-label span{
+  font-size:9px;
+  letter-spacing:.3em;
+}
+.app-shell[data-style="journal"] .journal-hero-label small{
+  padding-top:6px;
+  border-top:1px solid var(--paper-line);
+  font-size:6px;
+  letter-spacing:.17em;
+}
+.app-shell[data-style="journal"] .hero-card .companions{
+  position:absolute;
+  z-index:3;
+  top:77px;
+  left:0;
+  display:block;
+  width:49%;
+  margin:0;
+  transform:none;
+}
+.app-shell[data-style="journal"] .hero-card .companions .avatar{display:none}
+.app-shell[data-style="journal"] .hero-card .bond-line{
+  display:flex;
+  width:auto;
+  align-items:flex-start;
+  flex-direction:column;
+  gap:0;
+}
+.app-shell[data-style="journal"] .hero-card .bond-line i{display:none}
+.app-shell[data-style="journal"] .hero-card .bond-line b{
+  display:block;
+  min-width:0;
+  padding:0;
+  color:var(--paper-ink);
+  background:transparent;
+  font:400 clamp(94px,29vw,126px)/.82 "Bodoni 72","Didot","Times New Roman",Georgia,serif;
+  letter-spacing:-.075em;
+}
+.app-shell[data-style="journal"] .hero-card .bond-line small{
+  display:block;
+  margin:13px 0 0 8px;
+  color:var(--paper-muted);
+  font:italic 0/1 Georgia,serif;
+  letter-spacing:0;
+  text-transform:none;
+}
+.app-shell[data-style="journal"] .hero-card .bond-line small::after{
+  content:"days";
+  font:italic 36px/1 "Bodoni 72","Didot","Times New Roman",Georgia,serif;
+}
+.app-shell[data-style="journal"] .hero-card .companions::after{
+  content:"Every day with you.";
+  display:block;
+  width:132px;
+  margin:18px 0 0 8px;
+  padding-top:10px;
+  border-top:1px solid var(--paper-line);
+  color:var(--paper-muted);
+  font:italic 9px/1.4 Georgia,serif;
+  letter-spacing:.08em;
+}
+.app-shell[data-style="journal"] .journal-hero-collage{
+  display:block;
+  position:absolute;
+  z-index:2;
+  top:58px;
+  right:-6px;
+  width:57%;
+  height:333px;
+  pointer-events:none;
+}
+.app-shell[data-style="journal"] .journal-hero-collage::before{
+  content:"";
+  position:absolute;
+  z-index:0;
+  top:23px;
+  right:-23px;
+  width:164px;
+  height:221px;
+  background:url("/journal-assets/archive-lace-frame.webp") center/contain no-repeat;
+  opacity:.23;
+  filter:sepia(.28) saturate(.58);
+  transform:rotate(5deg);
+}
+.app-shell[data-style="journal"] .journal-polaroid{
+  position:absolute;
+  z-index:2;
+  top:66px;
+  right:-3px;
+  width:126px;
+  min-height:161px;
+  margin:0;
+  padding:8px 8px 20px;
+  background:#f2ecdf;
+  box-shadow:3px 6px 12px rgba(56,46,34,.2);
+  transform:rotate(4.5deg);
+}
+.app-shell[data-style="journal"] .journal-polaroid::before{
+  content:"";
+  position:absolute;
+  z-index:3;
+  top:-8px;
+  left:27px;
+  width:69px;
+  height:17px;
+  background:rgba(174,151,113,.36);
+  transform:rotate(-6deg);
+}
+.app-shell[data-style="journal"] .journal-polaroid-photo{
+  display:grid;
+  width:110px;
+  height:126px;
+  place-items:center;
+  overflow:hidden;
+  color:rgba(49,45,39,.45);
+  background-color:#aaa79f;
+  background-size:cover!important;
+  background-position:center!important;
+  filter:grayscale(1) sepia(.08) contrast(1.08);
+  font:28px/1 Georgia,serif;
+}
+.app-shell[data-style="journal"] .journal-polaroid figcaption{
+  margin-top:9px;
+  color:var(--paper-muted);
+  font:italic 6px/1 Georgia,serif;
+  letter-spacing:.09em;
+  text-align:center;
+}
+.app-shell[data-style="journal"] .journal-specimen{
+  position:absolute;
+  z-index:3;
+  left:-15px;
+  bottom:2px;
+  width:112px;
+  height:181px;
+  background:url("/journal-assets/botanical-sprig.svg") center/contain no-repeat;
+  opacity:.58;
+  filter:grayscale(1) sepia(.25);
+  transform:rotate(-10deg);
+}
+.app-shell[data-style="journal"] .journal-specimen::after{
+  content:"BOTANICAL SPECIMEN / L-07";
+  position:absolute;
+  left:19px;
+  bottom:-6px;
+  width:90px;
+  color:var(--paper-muted);
+  font:5px/1.4 Georgia,serif;
+  letter-spacing:.12em;
+}
+.app-shell[data-style="journal"] .journal-collage-stars{
+  position:absolute;
+  top:9px;
+  left:4px;
+  color:rgba(45,43,38,.62);
+  font:20px/1 Georgia,serif;
+  letter-spacing:.3em;
+  transform:rotate(-9deg);
+}
+.app-shell[data-style="journal"] .journal-hero-coordinate{
+  position:absolute;
+  z-index:4;
+  top:16px;
+  right:6px;
+  padding-left:7px;
+  border-left:1px solid var(--paper-line);
+  color:var(--paper-muted);
+  font:6px/1.55 Georgia,serif;
+  letter-spacing:.1em;
+  transform:rotate(2deg);
+}
+.app-shell[data-style="journal"] .journal-hero-postmark{
+  position:absolute;
+  z-index:4;
+  right:77px;
+  bottom:5px;
+  width:82px;
+  height:58px;
+  background:url("/journal-assets/postmark.svg") center/contain no-repeat;
+  opacity:.36;
+  transform:rotate(-13deg);
+}
+.app-shell[data-style="journal"] .journal-note-paper{
+  display:block;
+  position:absolute;
+  z-index:1;
+  top:406px;
+  left:19px;
+  width:89%;
+  height:222px;
+  background-color:#f4ede0;
+  background-image:
+    repeating-linear-gradient(0deg,transparent 0 34px,rgba(68,61,50,.055) 35px),
+    url("/journal-assets/paper-grain.svg");
+  box-shadow:4px 7px 14px rgba(60,48,33,.13);
+  clip-path:polygon(0 1%,7% 0,15% 1.1%,25% .2%,37% 1%,49% 0,62% 1.1%,74% .2%,86% 1%,100% 0,99% 97%,91% 99%,81% 97%,69% 100%,57% 98%,44% 100%,31% 97.5%,18% 100%,8% 98%,0 99%);
+  transform:rotate(-.8deg);
+}
+.app-shell[data-style="journal"] .journal-note-paper::before{
+  content:"";
+  position:absolute;
+  top:-3px;
+  left:41%;
+  width:74px;
+  height:16px;
+  background:rgba(175,151,113,.31);
+  transform:rotate(4deg);
+}
+.app-shell[data-style="journal"] .journal-note-paper::after{
+  content:"";
+  position:absolute;
+  right:18px;
+  bottom:16px;
+  width:67px;
+  height:90px;
+  background:url("/journal-assets/botanical-sprig.svg") center/contain no-repeat;
+  opacity:.13;
+  filter:grayscale(1);
+}
+.app-shell[data-style="journal"] .journal-note-meta{
+  display:flex;
+  position:absolute;
+  z-index:3;
+  top:438px;
+  left:42px;
+  width:76%;
+  align-items:center;
+  justify-content:space-between;
+  color:var(--paper-muted);
+}
+.app-shell[data-style="journal"] .journal-note-meta span{
+  color:var(--archive-red);
+  font:7px/1 Georgia,serif;
+  letter-spacing:.24em;
+}
+.app-shell[data-style="journal"] .journal-note-meta time{
+  font:italic 8px/1 Georgia,serif;
+  letter-spacing:.08em;
+}
+.app-shell[data-style="journal"] .hero-card>.journal-paperclip{
+  top:393px;
+  right:auto;
+  left:43px;
+  width:15px;
+  height:44px;
+  transform:rotate(-8deg);
+}
+.app-shell[data-style="journal"] .hero-card h2{
+  position:absolute;
+  z-index:3;
+  top:475px;
+  left:47px;
+  max-width:245px;
+  margin:0;
+  font:400 21px/1.55 "Songti SC","STSong","Noto Serif SC",Georgia,serif;
+}
+.app-shell[data-style="journal"] .hero-card p{
+  position:absolute;
+  z-index:3;
+  top:527px;
+  left:47px;
+  max-width:230px;
+  margin:0;
+  color:#5f5a52;
+  font:14px/1.9 "Kaiti SC","STKaiti","KaiTi",serif;
+}
+.app-shell[data-style="journal"] .hero-card .journal-hand-note{
+  right:auto;
+  left:8px;
+  bottom:auto;
+  top:365px;
+  font-size:9px;
+  transform:rotate(-6deg);
+}
+.app-shell[data-style="journal"] .hero-copy-editor{
+  position:absolute;
+  z-index:8;
+  top:466px;
+  left:40px;
+  width:76%;
+  padding:12px;
+  background:#f4ede0;
+  box-shadow:3px 6px 14px rgba(60,48,33,.16);
+}
+
+/* Home mood reads like a pinned emotional specimen and archive receipt. */
+.app-shell[data-style="journal"] .card-grid{
+  min-height:248px;
+  margin:-2px 0 27px 2px;
+}
+.app-shell[data-style="journal"] .card-grid .mini-card:first-child{
+  flex-basis:72%;
+  min-height:224px;
+  padding:58px 16px 17px;
+  overflow:visible;
+  background:#e9dfce;
+  clip-path:polygon(0 1%,10% 0,21% 1%,33% .2%,46% 1%,58% 0,72% 1%,85% .2%,100% 1%,99% 99%,84% 98%,70% 100%,55% 98%,40% 100%,24% 98%,9% 100%,0 99%);
+  transform:rotate(-1deg)!important;
+  box-shadow:4px 8px 15px rgba(60,48,33,.14);
+}
+.app-shell[data-style="journal"] .card-grid .mini-card:first-child::before{
+  top:-5px;
+  left:24px;
+  width:61px;
+  transform:rotate(-5deg);
+}
+.app-shell[data-style="journal"] .card-grid .mini-card:last-child{
+  flex-basis:39%;
+  min-height:145px;
+  margin-top:72px;
+  margin-left:-9%;
+  padding:28px 12px 14px 22px;
+  background:#d5c5aa;
+  clip-path:polygon(0 3%,9% 0,20% 2%,34% 0,49% 2%,64% 0,79% 2%,100% 0,98% 100%,0 97%);
+  transform:rotate(2.3deg);
+  box-shadow:3px 6px 11px rgba(60,48,33,.13);
+}
+.app-shell[data-style="journal"] .journal-mood-specimen{
+  display:flex;
+  position:absolute;
+  top:19px;
+  left:16px;
+  right:14px;
+  align-items:center;
+  gap:8px;
+  color:var(--archive-red);
+  pointer-events:none;
+}
+.app-shell[data-style="journal"] .journal-mood-specimen span{
+  font:7px/1 Georgia,serif;
+  letter-spacing:.22em;
+}
+.app-shell[data-style="journal"] .journal-mood-specimen i{
+  flex:1;
+  height:1px;
+  background:var(--paper-line);
+}
+.app-shell[data-style="journal"] .journal-mood-specimen b{
+  color:var(--paper-muted);
+  font:italic 6px/1 "Kaiti SC","STKaiti","KaiTi",serif;
+  font-weight:400;
+}
+.app-shell[data-style="journal"] .drives-card::after{
+  z-index:-1;
+  right:-7px;
+  top:auto;
+  bottom:-11px;
+  width:91px;
+  height:135px;
+  border-radius:0;
+  background:url("/journal-assets/botanical-sprig.svg") center/contain no-repeat;
+  opacity:.12;
+  filter:grayscale(1);
+  transform:rotate(8deg);
+}
+.app-shell[data-style="journal"] .drives-head{
+  padding-bottom:8px;
+  border-bottom:1px dashed var(--paper-line);
+}
+.app-shell[data-style="journal"] .drives-state{
+  color:var(--archive-green);
+  font:7px/1 Georgia,serif;
+  letter-spacing:.1em;
+}
+.app-shell[data-style="journal"] .drives-card>strong{
+  font:400 20px/1.25 "Songti SC","STSong",Georgia,serif;
+}
+.app-shell[data-style="journal"] .drive-row{
+  grid-template-columns:3em 1fr 2em;
+  color:var(--paper-muted);
+  font-family:"Kaiti SC","STKaiti","KaiTi",serif;
+}
+.app-shell[data-style="journal"] .drive-row i{
+  height:3px;
+  border-radius:0;
+  background:rgba(75,69,58,.12);
+}
+.app-shell[data-style="journal"] .drive-row i b{
+  border-radius:0;
+  background:var(--archive-red);
+  opacity:.62;
+}
+.app-shell[data-style="journal"] .card-grid .mini-card:last-child .card-label{
+  display:block;
+  margin-bottom:8px;
+  padding-bottom:6px;
+  border-bottom:1px solid rgba(58,53,45,.18);
+}
+.app-shell[data-style="journal"] .card-grid .mini-card:last-child::after{
+  content:"LUMIÈRE / LOG";
+  position:absolute;
+  right:8px;
+  bottom:7px;
+  color:rgba(67,61,51,.42);
+  font:5px/1 Georgia,serif;
+  letter-spacing:.13em;
+}
+.app-shell[data-style="journal"] .drives-dialog-backdrop{
+  background:rgba(51,45,36,.36);
+  backdrop-filter:blur(4px);
+}
+.app-shell[data-style="journal"] .drives-dialog-panel{
+  border-radius:1px;
+  color:var(--paper-ink);
+  background:#eee4d2;
+  background-image:url("/journal-assets/paper-grain.svg");
+  box-shadow:9px 16px 45px rgba(40,34,27,.3);
+  clip-path:polygon(0 1%,7% 0,18% 1%,31% 0,45% .7%,61% 0,77% 1%,89% 0,100% 1%,99% 99%,84% 98%,67% 100%,49% 98%,31% 100%,14% 98%,0 99%);
+}
+.app-shell[data-style="journal"] .drives-dialog-panel h2{color:var(--paper-ink);font-weight:400}
+.app-shell[data-style="journal"] .drives-dialog-panel header p,
+.app-shell[data-style="journal"] .drives-dialog-panel footer{color:var(--paper-muted)}
+.app-shell[data-style="journal"] .drives-dialog-panel header button{
+  border:1px solid var(--paper-line);
+  border-radius:1px;
+  color:var(--paper-ink);
+  background:transparent;
+}
+.app-shell[data-style="journal"] .drives-orbit{opacity:.42;filter:grayscale(1)}
+.app-shell[data-style="journal"] .drives-full-list section h3{color:var(--archive-red);font-family:Georgia,serif}
+.app-shell[data-style="journal"] .drive-full-row{color:var(--paper-muted)}
+.app-shell[data-style="journal"] .drive-full-row i{border-radius:0;background:rgba(75,69,58,.12)}
+.app-shell[data-style="journal"] .drive-full-row i b{border-radius:0;background:var(--archive-red);opacity:.62}
+
+/* Chat background follows the hand-drawn star atlas reference. */
+.app-shell[data-style="journal"] .page[data-page="chat"]{isolation:isolate}
+.app-shell[data-style="journal"] .journal-star-field{
+  display:block;
+  position:absolute;
+  z-index:0;
+  inset:88px 0 102px;
+  pointer-events:none;
+  background:
+    linear-gradient(rgba(238,229,212,.18),rgba(238,229,212,.18)),
+    url("/journal-assets/handdrawn-stars.svg") center top/100% auto repeat-y;
+  opacity:.46;
+  filter:sepia(.18);
+}
+.app-shell[data-style="journal"] .page[data-page="chat"]>.journal-letterhead,
+.app-shell[data-style="journal"] .page[data-page="chat"]>.chat-topbar,
+.app-shell[data-style="journal"] .page[data-page="chat"]>.conversation,
+.app-shell[data-style="journal"] .page[data-page="chat"]>.scroll-to-bottom,
+.app-shell[data-style="journal"] .page[data-page="chat"]>.attachment-sheet,
+.app-shell[data-style="journal"] .page[data-page="chat"]>.composer{
+  position:relative;
+  z-index:2;
+}
+.app-shell[data-style="journal"] .conversation{
+  background-image:linear-gradient(rgba(238,229,212,.12),rgba(238,229,212,.12));
+}
+.app-shell[data-style="journal"] .message-row:nth-child(3n+1) .message{transform:rotate(-.25deg)}
+.app-shell[data-style="journal"] .message-row:nth-child(3n+2) .message{transform:rotate(.3deg)}
+
+/* Voice strips and call records become filed audio fragments. */
+.app-shell[data-style="journal"] .ai-voice-note{
+  position:relative;
+  width:min(286px,74vw);
+  height:58px;
+  margin:0;
+  padding:0 11px 0 9px;
+  gap:8px;
+  overflow:visible;
+  border:1px solid rgba(62,56,47,.23);
+  border-radius:0;
+  color:#383630;
+  background:#dfd2bb;
+  background-image:url("/journal-assets/paper-grain.svg");
+  box-shadow:2px 4px 9px rgba(54,46,36,.13);
+  clip-path:polygon(0 3%,8% 0,19% 2%,31% 0,44% 2%,59% 0,72% 2%,86% 0,100% 2%,99% 98%,87% 100%,72% 98%,57% 100%,41% 98%,25% 100%,10% 98%,0 100%);
+}
+.app-shell[data-style="journal"] .ai-voice-note::before{
+  content:"AUDIO FRAGMENT";
+  position:absolute;
+  top:-11px;
+  right:4px;
+  color:var(--archive-red);
+  font:5px/1 Georgia,serif;
+  letter-spacing:.16em;
+}
+.app-shell[data-style="journal"] .voice-play-icon{
+  border:1px solid rgba(62,56,47,.21);
+  border-radius:50%;
+  color:var(--paper-ink);
+  background:rgba(247,241,229,.52);
+}
+.app-shell[data-style="journal"] .voice-waveform i{
+  width:2px!important;
+  border-radius:0;
+  opacity:.64;
+}
+.app-shell[data-style="journal"] .voice-note b{
+  color:var(--paper-muted);
+  font-family:Georgia,serif;
+  letter-spacing:.08em;
+}
+.app-shell[data-style="journal"] .voice-note.ready b::after{border-radius:0;background:var(--archive-green)}
+.app-shell[data-style="journal"] .voice-translation{
+  position:relative;
+  width:min(242px,70vw);
+  margin:5px 0 0 13px;
+  padding:12px 13px;
+  border:0;
+  border-radius:0;
+  color:#5e594f;
+  background:#f4ede0;
+  background-image:url("/journal-assets/paper-grain.svg");
+  box-shadow:2px 4px 9px rgba(54,46,36,.09);
+  clip-path:polygon(0 0,100% 1%,98% 100%,2% 98%);
+  font:11px/1.65 "Kaiti SC","STKaiti","KaiTi",serif;
+}
+.app-shell[data-style="journal"] .voice-translation::before{
+  content:"";
+  position:absolute;
+  top:-4px;
+  left:22px;
+  width:45px;
+  height:10px;
+  background:rgba(177,151,111,.28);
+  transform:rotate(-3deg);
+}
+.app-shell[data-style="journal"] .call-record-card{
+  position:relative;
+  min-width:226px;
+  padding:20px 15px 16px;
+  gap:12px;
+  overflow:visible;
+  border:1px solid rgba(62,56,47,.23);
+  border-radius:0;
+  color:var(--paper-ink);
+  background:#e8decc;
+  background-image:
+    repeating-linear-gradient(0deg,transparent 0 24px,rgba(67,61,51,.05) 25px),
+    url("/journal-assets/paper-grain.svg");
+  box-shadow:3px 5px 11px rgba(54,46,36,.12);
+  clip-path:polygon(0 2%,9% 0,20% 2%,34% 0,49% 2%,63% 0,78% 2%,91% 0,100% 2%,99% 98%,84% 100%,67% 98%,51% 100%,34% 98%,18% 100%,0 98%);
+  transform:rotate(-.5deg);
+}
+.app-shell[data-style="journal"] .call-record-card::before{
+  content:"RECORDED · PRIVATE LINE";
+  position:absolute;
+  top:7px;
+  left:15px;
+  color:var(--archive-red);
+  font:5px/1 Georgia,serif;
+  letter-spacing:.17em;
+}
+.app-shell[data-style="journal"] .call-record-card::after{
+  content:"";
+  position:absolute;
+  top:-5px;
+  right:20px;
+  width:44px;
+  height:11px;
+  background:rgba(177,151,111,.3);
+  transform:rotate(5deg);
+}
+.app-shell[data-style="journal"] .call-record-card>span{
+  width:36px;
+  height:36px;
+  margin-top:5px;
+  border:1px solid var(--paper-line);
+  border-radius:50%;
+  color:var(--archive-red);
+  background:rgba(247,241,229,.52);
+}
+.app-shell[data-style="journal"] .call-record-card small{
+  color:var(--paper-muted);
+  font-family:Georgia,serif;
+  letter-spacing:.18em;
+  opacity:1;
+}
+.app-shell[data-style="journal"] .call-record-card strong{
+  color:var(--paper-ink);
+  font-family:"Songti SC","STSong",Georgia,serif;
+  font-weight:400;
+}
+
+.app-shell[data-style="journal"][data-mode="dark"] .journal-polaroid,
+.app-shell[data-style="journal"][data-mode="dark"] .journal-note-paper,
+.app-shell[data-style="journal"][data-mode="dark"] .voice-translation{background-color:#474138;color:var(--paper-ink)}
+.app-shell[data-style="journal"][data-mode="dark"] .journal-polaroid-photo{filter:grayscale(1) brightness(.72) contrast(1.08)}
+.app-shell[data-style="journal"][data-mode="dark"] .journal-star-field{filter:invert(.8) grayscale(1);opacity:.12}
+.app-shell[data-style="journal"][data-mode="dark"] .card-grid .mini-card:first-child,
+.app-shell[data-style="journal"][data-mode="dark"] .ai-voice-note,
+.app-shell[data-style="journal"][data-mode="dark"] .call-record-card{background-color:#413b32;color:var(--paper-ink)}
+.app-shell[data-style="journal"][data-mode="dark"] .card-grid .mini-card:last-child{background:#38342e}
+
+@media(max-width:370px){
+  .app-shell[data-style="journal"] .hero-card{min-height:635px;padding:0}
+  .app-shell[data-style="journal"] .hero-card .bond-line b{font-size:91px}
+  .app-shell[data-style="journal"] .journal-hero-collage{right:-13px;width:58%;transform:scale(.92);transform-origin:top right}
+  .app-shell[data-style="journal"] .journal-note-paper{top:382px;height:214px}
+  .app-shell[data-style="journal"] .journal-note-meta{top:414px}
+  .app-shell[data-style="journal"] .hero-card>.journal-paperclip{top:369px}
+  .app-shell[data-style="journal"] .hero-card h2{top:451px;left:39px;font-size:19px}
+  .app-shell[data-style="journal"] .hero-card p{top:503px;left:39px;max-width:215px}
+  .app-shell[data-style="journal"] .hero-card .journal-hand-note{top:344px}
+  .app-shell[data-style="journal"] .card-grid .mini-card:first-child{flex-basis:76%}
+  .app-shell[data-style="journal"] .card-grid .mini-card:last-child{flex-basis:40%;margin-left:-14%}
 }
