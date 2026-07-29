@@ -241,6 +241,30 @@
     }
     await renderer.finish();
   }
+  window.LumiereAPI.generateTemporary = async (content, options = {}) => {
+    const response = await openChatStream({
+      content,
+      attachments: [],
+      model: options.model || modelSelect.value,
+      temporary: true,
+      thinking: false
+    });
+    let streamed = "";
+    let finalText = "";
+    let streamError = "";
+    await consumeSse(response, {
+      handle(event) {
+        if (event.type === "text") streamed += event.content || "";
+        if (event.type === "error") streamError = event.content || "连接中断了";
+        if (event.type === "done" && event.assistant) finalText = event.assistant.content || "";
+      },
+      finish() {
+        if (streamError) throw new Error(streamError);
+        return Promise.resolve();
+      }
+    });
+    return String(finalText || streamed).trim();
+  };
   async function sendMessage(content, attachments = []) {
     if (state.busy) return; state.busy = true;
     window.dispatchEvent(new CustomEvent("lumiere:pet-state", { detail: { state: "thinking" } }));

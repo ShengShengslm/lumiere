@@ -10,6 +10,7 @@ function runSplashScreen(){const reduced=window.matchMedia('(prefers-reduced-mot
 runSplashScreen();
 
 function showToast(message){toast.textContent=message;toast.classList.add('show');clearTimeout(showToast.timer);showToast.timer=setTimeout(()=>toast.classList.remove('show'),1500)}
+window.LumiereShowToast=showToast;
 function switchPage(target){pages.forEach(p=>p.classList.toggle('active',p.dataset.page===target));navButtons.forEach(b=>b.classList.toggle('active',b.dataset.target===target));document.querySelector('.app-shell').classList.toggle('chat-page',target==='chat');document.querySelector(`[data-page="${target}"]`).scrollTop=0;if(target==='chat')requestAnimationFrame(()=>window.LumiereChatScrollToEnd?.())}
 window.LumiereSwitchPage=switchPage;
 navButtons.forEach(button=>button.addEventListener('click',()=>switchPage(button.dataset.target)));
@@ -52,9 +53,12 @@ document.querySelectorAll('.switch').forEach(toggle=>toggle.addEventListener('ch
 
 const shell=document.querySelector('.app-shell');
 const assetStore=(()=>{let pending;function db(){if(!pending)pending=new Promise((resolve,reject)=>{const request=indexedDB.open('lumiere-personal-assets',1);request.onupgradeneeded=()=>request.result.createObjectStore('assets');request.onsuccess=()=>resolve(request.result);request.onerror=()=>reject(request.error)});return pending}async function run(mode,action){const database=await db();return new Promise((resolve,reject)=>{const transaction=database.transaction('assets',mode);const request=action(transaction.objectStore('assets'));request.onsuccess=()=>resolve(request.result);request.onerror=()=>reject(request.error)})}return{get:key=>run('readonly',store=>store.get(key)),set:(key,value)=>run('readwrite',store=>store.put(value,key)),remove:key=>run('readwrite',store=>store.delete(key))}})();
+window.LumierePersonalAssets=assetStore;
 function applySavedBackground(data){if(!data)return;const image=`url("${data}")`;shell.style.setProperty('--user-background',image);shell.classList.add('has-custom-background');document.querySelector('#background-preview').style.backgroundImage=`linear-gradient(90deg,rgba(255,255,255,.48),rgba(255,255,255,.1)),${image}`}
 function applySavedAvatar(person,data){if(!data)return;shell.style.setProperty(`--${person}-avatar-image`,`url("${data}")`);shell.classList.add(`has-${person}-avatar`)}
-async function restorePersonalAssets(){try{const [background,lumiAvatar,userAvatar]=await Promise.all([assetStore.get('background'),assetStore.get('avatar-lumi'),assetStore.get('avatar-user')]);applySavedBackground(background);applySavedAvatar('lumi',lumiAvatar);applySavedAvatar('user',userAvatar)}catch(error){console.warn('Could not restore personal images',error)}}
+function applySavedHomePhoto(data){if(!data)return;const image=`url("${data}")`;shell.style.setProperty('--journal-home-photo',image);shell.classList.add('has-journal-home-photo')}
+window.LumiereApplyHomePhoto=applySavedHomePhoto;
+async function restorePersonalAssets(){try{const [background,lumiAvatar,userAvatar,homePhoto]=await Promise.all([assetStore.get('background'),assetStore.get('avatar-lumi'),assetStore.get('avatar-user'),assetStore.get('journal-home-photo')]);applySavedBackground(background);applySavedAvatar('lumi',lumiAvatar);applySavedAvatar('user',userAvatar);applySavedHomePhoto(homePhoto)}catch(error){console.warn('Could not restore personal images',error)}}
 restorePersonalAssets();
 const relationshipStartUtc=Date.UTC(2026,5,27);
 function renderBondDays(){const now=new Date();const todayUtc=Date.UTC(now.getFullYear(),now.getMonth(),now.getDate());const days=Math.max(1,Math.floor((todayUtc-relationshipStartUtc)/86400000)+1);document.querySelector('#bond-days').textContent=days;document.querySelector('#drawer-bond-days').textContent=`相伴 ${days} 天`}
