@@ -80,6 +80,21 @@ def _real_torn_mask(
     paper.save(ASSETS / output, optimize=True)
 
 
+def _split_letter_atlas() -> None:
+    source = Image.open(ASSETS / "burnt-letter-atlas.png").convert("RGBA")
+    pieces = (
+        ("burnt-letter-diagonal.png", (0, 0, source.width, 610), 760),
+        ("burnt-letter-botanical.png", (60, 570, 900, 1160), 690),
+        ("burnt-letter-folded.png", (70, 1140, 980, source.height), 760),
+    )
+    for output, crop, max_width in pieces:
+        piece = _trim_alpha(source.crop(crop), padding=8)
+        if piece.width > max_width:
+            height = round(piece.height * max_width / piece.width)
+            piece = piece.resize((max_width, height), Image.Resampling.LANCZOS)
+        piece.save(ASSETS / output, optimize=True)
+
+
 def main() -> None:
     # Source screenshot contains four separate specimens on a white field.
     _paper_cutout(
@@ -127,6 +142,7 @@ def main() -> None:
         size=(1200, 520),
         segment=(0.58, 0.98),
     )
+    _split_letter_atlas()
 
 
 if __name__ == "__main__":

@@ -2845,3 +2845,200 @@ html .app-shell[data-style="journal"] .page.call-page .call-caption #call-spoken
   .app-shell[data-style="journal"] .journal-note-actions{top:547px;right:11%}
   .app-shell[data-style="journal"] .journal-note-editor{top:395px;left:10%;width:80%}
 }
+
+/* v58: quieter editorial collage, handwritten note, and scorched letter fragments. */
+.app-shell[data-style="journal"] .bottom-nav::before,
+.app-shell[data-style="journal"] .chat-topbar::after{
+  display:none!important;
+  content:none!important;
+}
+
+.app-shell[data-style="journal"] .hero-card>.journal-note-content{
+  max-height:88px;
+  color:#51483c;
+  font-family:"Kaiti SC","STKaiti","KaiTi","DFKai-SB","楷体",cursive!important;
+  font-size:11.5px!important;
+  font-style:normal;
+  font-weight:400!important;
+  line-height:2.15!important;
+  letter-spacing:.075em;
+  -webkit-text-size-adjust:none;
+  text-size-adjust:none;
+}
+.app-shell[data-style="journal"] .journal-note-editor textarea{
+  font-family:"Kaiti SC","STKaiti","KaiTi","DFKai-SB","楷体",cursive!important;
+  font-size:12px!important;
+  font-weight:400;
+  line-height:2!important;
+  letter-spacing:.055em;
+}
+
+.app-shell[data-style="journal"] .found-chat-letter{
+  top:112px;
+  right:-72px;
+  width:286px;
+  height:168px;
+  transform:rotate(3deg);
+}
+.app-shell[data-style="journal"] .found-chat-letter img{
+  opacity:.17;
+  filter:sepia(.25) saturate(.48) contrast(.91);
+}
+.app-shell[data-style="journal"] .found-chat-lilies{
+  right:-8px;
+  bottom:116px;
+  width:86px;
+  height:232px;
+}
+.app-shell[data-style="journal"] .found-chat-lilies img{opacity:.16}
+.app-shell[data-style="journal"] .found-chat-butterfly{
+  top:338px;
+  left:-26px;
+}
+.app-shell[data-style="journal"] .found-chat-butterfly img{opacity:.13}
+.app-shell[data-style="journal"] .found-chat-lotus{
+  bottom:44px;
+  width:75px;
+  height:178px;
+}
+.app-shell[data-style="journal"] .found-chat-lotus img{opacity:.11}
+
+.app-shell[data-style="journal"] .found-memory-letter{
+  top:245px;
+  left:-92px;
+  width:292px;
+  height:222px;
+  transform:rotate(-4deg);
+}
+.app-shell[data-style="journal"] .found-memory-letter img{
+  opacity:.21;
+  filter:sepia(.22) saturate(.52) contrast(.9);
+}
+.app-shell[data-style="journal"] .found-moments-letter{
+  top:330px;
+  right:-76px;
+  width:292px;
+  height:122px;
+  transform:rotate(4deg);
+}
+.app-shell[data-style="journal"] .found-moments-letter img{
+  opacity:.22;
+  filter:sepia(.22) saturate(.5) contrast(.9);
+}
+.app-shell[data-style="journal"] .found-settings-letter{
+  top:515px;
+  right:-94px;
+  width:300px;
+  height:226px;
+  transform:rotate(3deg);
+}
+.app-shell[data-style="journal"] .found-settings-letter img{
+  opacity:.19;
+  filter:sepia(.24) saturate(.5) contrast(.9);
+}
+
+.app-shell[data-style="journal"] .page[data-page="moments"] .moments-heading h2{
+  font-family:Georgia,"Times New Roman","Songti SC","STSong",serif;
+  font-weight:500;
+  letter-spacing:.025em;
+}
+.app-shell[data-style="journal"] .moment-composer{
+  position:relative;
+  padding:34px 17px 18px;
+  border:1px solid rgba(78,61,42,.18);
+  background:
+    linear-gradient(rgba(237,224,201,.92),rgba(231,214,187,.94)),
+    url("/journal-assets/paper-grain.svg") center/320px 320px repeat;
+  box-shadow:3px 7px 15px rgba(55,42,27,.13);
+}
+.app-shell[data-style="journal"] .moment-composer::before{
+  top:12px;
+  right:16px;
+  color:rgba(105,57,53,.75);
+  font:7px/1 Georgia,serif;
+  letter-spacing:.23em;
+}
+.app-shell[data-style="journal"] .moment-composer::after{
+  content:"";
+  position:absolute;
+  top:-7px;
+  left:28px;
+  width:68px;
+  height:15px;
+  background:rgba(196,177,142,.54);
+  box-shadow:0 1px 0 rgba(255,255,255,.22) inset;
+  transform:rotate(-3deg);
+  pointer-events:none;
+}
+.app-shell[data-style="journal"] .moments-feed .moment-card{
+  position:relative;
+  padding:31px 16px 17px;
+  border:1px solid rgba(74,58,40,.16);
+  background:
+    linear-gradient(rgba(246,238,222,.96),rgba(238,226,205,.96)),
+    url("/journal-assets/paper-grain.svg") center/340px 340px repeat!important;
+  box-shadow:3px 7px 15px rgba(58,44,29,.13)!important;
+}
+.app-shell[data-style="journal"] .moments-feed .moment-card::before{
+  content:"PRIVATE POST  ·  ARCHIVE COPY";
+  position:absolute;
+  top:11px;
+  left:16px;
+  color:rgba(113,61,56,.72);
+  font:6.5px/1 Georgia,serif;
+  letter-spacing:.2em;
+}
+.app-shell[data-style="journal"] .moment-author strong,
+.app-shell[data-style="journal"] .moment-body{
+  font-family:"Songti SC","STSong",Georgia,serif;
+}
+.app-shell[data-style="journal"] .moment-author time{
+  color:rgba(72,62,49,.58);
+  font-family:Georgia,serif;
+  letter-spacing:.08em;
+}
+.app-shell[data-style="journal"] .moment-photo{
+  border:7px solid #eee4d2!important;
+  border-bottom-width:21px!important;
+  border-radius:0!important;
+  box-shadow:2px 5px 11px rgba(52,40,27,.16);
+  filter:sepia(.16) saturate(.62) contrast(.96);
+}
+.app-shell[data-style="journal"] .moment-reaction{
+  border:1px solid rgba(77,61,43,.12);
+  border-radius:0;
+  background:rgba(226,210,184,.42);
+  color:#615748;
+  font-family:"Kaiti SC","STKaiti","KaiTi",serif;
+}
+.app-shell[data-style="journal"] .moment-actions button,
+.app-shell[data-style="journal"] .moment-comment-form button,
+.app-shell[data-style="journal"] .moment-comment-form input{
+  border:1px solid rgba(79,62,43,.18);
+  border-radius:1px;
+  background:rgba(235,224,203,.62);
+  color:#5c5041;
+  font-family:"Songti SC","STSong",Georgia,serif;
+}
+
+.app-shell[data-style="journal"] .page[data-page="memory"] .calendar-card,
+.app-shell[data-style="journal"] .page[data-page="memory"] .diary-card,
+.app-shell[data-style="journal"] .page[data-page="memory"] .ob-entry,
+.app-shell[data-style="journal"] .page[data-page="settings"] .profile-card,
+.app-shell[data-style="journal"] .page[data-page="settings"] .settings-group{
+  border-color:rgba(76,60,42,.14);
+  background-image:
+    linear-gradient(rgba(244,236,220,.96),rgba(237,224,201,.96)),
+    url("/journal-assets/paper-grain.svg");
+  background-size:auto,320px 320px;
+}
+
+@media(max-width:370px){
+  .app-shell[data-style="journal"] .hero-card>.journal-note-content{
+    top:445px;
+    font-size:10.5px!important;
+  }
+  .app-shell[data-style="journal"] .found-chat-letter{right:-92px;width:270px}
+  .app-shell[data-style="journal"] .found-memory-letter{left:-112px;width:276px}
+  .app-shell[data-style="journal"] .found-settings-letter{right:-112px;width:280px}
+}

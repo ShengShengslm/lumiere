@@ -30,6 +30,7 @@
         <span>PRIVATE LETTERS</span><b>FROM LUMIÈRE, WITH CARE</b>
       </aside>
       <div class="journal-found-collage journal-found-chat" aria-hidden="true">
+        <span class="found-material found-chat-letter"><img src="/journal-assets/burnt-letter-diagonal.png" alt=""></span>
         <span class="found-material found-chat-lilies"><img src="/journal-assets/botanical-rose-cutout.png" alt=""></span>
         <span class="found-material found-chat-butterfly"><img src="/journal-assets/botanical-moth-cutout.png" alt=""></span>
         <span class="found-material found-chat-lotus"><img src="/journal-assets/botanical-lotus-specimen-v2.png" alt=""></span>
@@ -41,6 +42,7 @@
       </aside>
       <div class="journal-postmark journal-postmark-memory" aria-hidden="true"></div>
       <div class="journal-found-collage journal-found-memory" aria-hidden="true">
+        <span class="found-material found-memory-letter"><img src="/journal-assets/burnt-letter-botanical.png" alt=""></span>
         <span class="found-material found-memory-print"><img src="/journal-assets/botanical-moth-cutout.png" alt=""></span>
         <span class="found-material found-memory-lace"><img src="/journal-assets/archive-lace-frame.webp" alt=""></span>
         <span class="found-material found-memory-lotus"><img src="/journal-assets/botanical-rose-cutout.png" alt=""></span>
@@ -56,6 +58,7 @@
         <span>FILM & FRAGMENTS</span><b>PERSONAL COLLECTION</b>
       </aside>
       <div class="journal-found-collage journal-found-moments" aria-hidden="true">
+        <span class="found-material found-moments-letter"><img src="/journal-assets/burnt-letter-folded.png" alt=""></span>
         <span class="found-material found-moments-moth"><img src="/journal-assets/botanical-moth-cutout.png" alt=""></span>
         <span class="found-material found-moments-ephemera"><img src="/journal-assets/archive-botanical.webp" alt=""></span>
         <span class="found-material found-moments-lotus"><img src="/journal-assets/botanical-lotus-specimen-v2.png" alt=""></span>
@@ -66,6 +69,7 @@
         <span>OWNER'S FILE</span><b>PERSONAL JOURNAL</b>
       </aside>
       <div class="journal-found-collage journal-found-settings" aria-hidden="true">
+        <span class="found-material found-settings-letter"><img src="/journal-assets/burnt-letter-botanical.png" alt=""></span>
         <span class="found-material found-settings-candelabra"><img src="/journal-assets/botanical-lotus-specimen-v2.png" alt=""></span>
         <span class="found-material found-settings-lily"><img src="/journal-assets/botanical-rosemary-cutout.png" alt=""></span>
         <span class="found-material found-settings-lace"><img src="/journal-assets/archive-lace-frame.webp" alt=""></span>
